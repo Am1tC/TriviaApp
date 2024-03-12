@@ -7,17 +7,21 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TriviaAppClean.Models;
 using TriviaAppClean.Services;
+using TriviaAppClean.Views;
 
 namespace TriviaAppClean.ViewModels
 {
     public class LoginViewModel:ViewModelBase
     {
         private TriviaWebAPIProxy triviaService;
-        public LoginViewModel(TriviaWebAPIProxy service) 
+        private RegisterView register;
+        public LoginViewModel(TriviaWebAPIProxy service, RegisterView register) 
         {
+            this.register = register;
             InServerCall = false;
             this.triviaService = service;
             this.LoginCommand = new Command(OnLogin);
+            this.TapCommand = new Command(Tap);
         }
 
         public ICommand LoginCommand { get; set; }
@@ -65,5 +69,11 @@ namespace TriviaAppClean.ViewModels
                 return !this.InServerCall;
             }
         }
+        public Command TapCommand { get; set; }
+        private async void Tap() 
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(register);  
+        }
+
     }
 }

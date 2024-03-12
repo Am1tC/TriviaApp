@@ -8,7 +8,42 @@
             Text="Press To Login!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <Entry 
+         Placeholder="Email"
+         Text="{Binding Email}"     
+            Keyboard="Email"
+            TextColor="Green"
+         HorizontalOptions="Center" />
+         
+        <Entry
+         Placeholder="Password"
+            IsPassword="True"
+            Keyboard="Numeric"
+         Text="{Binding Password}"
+         VerticalOptions="Center" 
+         HorizontalOptions="Center" />
+
         <Button Text="Submit Login" Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}"></Button>
-        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator> 
+        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
+        
+        <Label>
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Don't have an account? " />
+                    <Span Text="click here"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TapCommand}"
+                                                  CommandParameter=""/>
+                            
+                                           
+                        </Span.GestureRecognizers>
+                    </Span>
+                    <Span Text=" to register" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
     </VerticalStackLayout>
 </ContentPage>
