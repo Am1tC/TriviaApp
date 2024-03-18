@@ -6,9 +6,6 @@
     xmlns:views="clr-namespace:TriviaAppClean.Views"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:LoginView}"
-        Route="MainPage" />
+      
 
 </Shell>
