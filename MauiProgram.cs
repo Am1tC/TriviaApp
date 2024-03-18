@@ -27,6 +27,7 @@ public static class MauiProgram
 		
 		return builder.Build();
 	}
+    
 
     public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
     {
@@ -45,4 +46,45 @@ public static class MauiProgram
         builder.Services.AddTransient<LoginViewModel>();
         return builder;
     }
+    public static MauiAppBuilder AddQuestionView(this MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<LoginViewModel>();
+        return builder;
+    }
+    public static MauiAppBuilder GameView(this MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<LoginViewModel>();
+        return builder;
+    }
+    public static MauiAppBuilder LoginView(this MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<LoginViewModel>();
+        return builder;
+    }
+    public static MauiAppBuilder ProfileView(this MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<LoginViewModel>();
+        return builder;
+    }
+    public static MauiAppBuilder RecordsView(this MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<LoginViewModel>();
+        return builder;
+    }
+    public static MauiAppBuilder RegisterView(this MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<LoginViewModel>();
+        return builder;
+    }
+    public static MauiAppBuilder ShowQuestionView(this MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<LoginViewModel>();
+        return builder;
+    }
+    public static MauiAppBuilder UserListView(this MauiAppBuilder builder)
+    {
+        builder.Services.AddTransient<LoginViewModel>();
+        return builder;
+    }
+   
 }
