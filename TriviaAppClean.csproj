@@ -68,10 +68,7 @@
 	  <MauiXaml Update="Views\ProfileView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\RecordsView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\RegisterView.xaml">
+	  <MauiXaml Update="Views\RecordesView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ShowQuestionView.xaml">
