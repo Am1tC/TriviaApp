@@ -82,8 +82,6 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
-
-
         private TriviaWebAPIProxy triviaService;
         public RegisterViewModel(TriviaWebAPIProxy service)
         {
@@ -92,7 +90,7 @@ namespace TriviaAppClean.ViewModels
         }
 
         public ICommand SignUpCommand { get; set; }
-        // 
+
         private async void OnSignUp()
         {
 
