@@ -25,6 +25,9 @@
             Text="{Binding Email}"     
             Keyboard="Email"/>
 
+        <Button>
+            
+        </Button>
         
     </VerticalStackLayout>
 </ContentPage>

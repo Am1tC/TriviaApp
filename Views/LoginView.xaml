@@ -45,5 +45,10 @@
             </Label.FormattedText>
         </Label>
 
+        <Button Text="Go to Sign Up" Command="{Binding TapCommand}"
+                                                  CommandParameter="">
+            
+        </Button>
+
     </VerticalStackLayout>
 </ContentPage>

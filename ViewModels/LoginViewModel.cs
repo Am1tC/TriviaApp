@@ -281,11 +281,11 @@ namespace TriviaAppClean.ViewModels
                 return !this.InServerCall;
             }
         }
-        //public Command TapCommand { get; set; }
-        //private async void Tap() 
-        //{
-        //    await Application.Current.MainPage.Navigation.PushAsync(register);  
-        //} 
+        public Command TapCommand { get; set; }
+        private async void Tap()
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(register);
+        }
 
 
     }
