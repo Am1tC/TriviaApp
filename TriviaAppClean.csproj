@@ -56,6 +56,9 @@
 	  <MauiXaml Update="Views\AddQuestionView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\CheckPendingQuestionView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ConnectingToServerView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

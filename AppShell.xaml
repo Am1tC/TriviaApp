@@ -10,9 +10,45 @@
         Title="Home"
         ContentTemplate="{DataTemplate views:LoginView}"
         Route="MainPage" />
-    
-    
-    
-    
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="MainTabs">
+        <ShellContent 
+            Title="Game Start"
+            ContentTemplate="{DataTemplate views:GameView}"
+            Route="GameStart"/>
+        <ShellContent
+            Title="Records"
+            ContentTemplate="{DataTemplate views:RecordsView}"
+            Route="Records"/>
+        <ShellContent
+            Title="My Profile"
+            ContentTemplate="{DataTemplate views:ProfileView}"
+            Route="MyProfile"/>
+    </FlyoutItem>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="PermissionTabs" IsVisible="True">
+        <ShellContent
+            Title="Add Question"
+            ContentTemplate="{DataTemplate views:AddQuestionView}"
+            Route="AddQuestion"/>
+        <ShellContent
+            Title="Check Question"
+            ContentTemplate="{DataTemplate views:CheckPendingQuestionView}"
+            Route="CheckQuestion"/>
+    </FlyoutItem>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="ManagerTabs" IsVisible="True">
+        <ShellContent
+            Title="Users List"
+            ContentTemplate="{DataTemplate views:UserListView}"
+            Route="AllUsers"/>
+        <ShellContent
+            Title="Questions List"
+            ContentTemplate="{DataTemplate views:ShowQuestionView}"
+            Route="AllQuestions"/>
+    </FlyoutItem>
+
+
+
+
+
 
 </Shell>
