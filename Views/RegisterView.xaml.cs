@@ -1,9 +1,12 @@
+using TriviaAppClean.ViewModels;
+
 namespace TriviaAppClean.Views;
 
 public partial class RegisterView : ContentPage
 {
-	public RegisterView()
+	public RegisterView(RegisterViewModel vm)
 	{
+		this.BindingContext = vm;
 		InitializeComponent();
 	}
 }
