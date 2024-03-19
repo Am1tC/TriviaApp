@@ -4,9 +4,10 @@
              x:Class="TriviaAppClean.Views.UserListView"
              Title="UserListView">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        
+        
+        
+        
+        
     </VerticalStackLayout>
 </ContentPage>
