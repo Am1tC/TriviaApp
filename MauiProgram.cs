@@ -33,6 +33,14 @@ public static class MauiProgram
     {
         builder.Services.AddTransient<LoginView> ();
         builder.Services.AddTransient<RegisterView> ();
+        builder.Services.AddTransient<AddQuestionView>();
+        builder.Services.AddTransient<ConnectingToServerView>();
+        builder.Services.AddTransient<GameView>();
+        builder.Services.AddTransient<ProfileView>();
+        builder.Services.AddTransient<RecordsView>();
+        builder.Services.AddTransient<ShowQuestionView>();
+        builder.Services.AddTransient<UserListView>();
+
         return builder;
     }
 
@@ -44,47 +52,14 @@ public static class MauiProgram
     public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
     {
         builder.Services.AddTransient<LoginViewModel>();
+        builder.Services.AddTransient<RegisterViewModel>();
+        builder.Services.AddTransient<AddQuestionViewModel>();
+        builder.Services.AddTransient<ConnectingToServerViewModel>();
+        builder.Services.AddTransient<GameViewModel>();
+        builder.Services.AddTransient<ProfileViewModel>();
+        builder.Services.AddTransient<RecordsViewModel>();
+        builder.Services.AddTransient<ShowQuestionViewModel>();
+        builder.Services.AddTransient<UserListViewModel>();
         return builder;
     }
-    public static MauiAppBuilder AddQuestionView(this MauiAppBuilder builder)
-    {
-        builder.Services.AddTransient<LoginViewModel>();
-        return builder;
-    }
-    public static MauiAppBuilder GameView(this MauiAppBuilder builder)
-    {
-        builder.Services.AddTransient<LoginViewModel>();
-        return builder;
-    }
-    public static MauiAppBuilder LoginView(this MauiAppBuilder builder)
-    {
-        builder.Services.AddTransient<LoginViewModel>();
-        return builder;
-    }
-    public static MauiAppBuilder ProfileView(this MauiAppBuilder builder)
-    {
-        builder.Services.AddTransient<LoginViewModel>();
-        return builder;
-    }
-    public static MauiAppBuilder RecordsView(this MauiAppBuilder builder)
-    {
-        builder.Services.AddTransient<LoginViewModel>();
-        return builder;
-    }
-    public static MauiAppBuilder RegisterView(this MauiAppBuilder builder)
-    {
-        builder.Services.AddTransient<LoginViewModel>();
-        return builder;
-    }
-    public static MauiAppBuilder ShowQuestionView(this MauiAppBuilder builder)
-    {
-        builder.Services.AddTransient<LoginViewModel>();
-        return builder;
-    }
-    public static MauiAppBuilder UserListView(this MauiAppBuilder builder)
-    {
-        builder.Services.AddTransient<LoginViewModel>();
-        return builder;
-    }
-   
 }

@@ -5,8 +5,29 @@
              Title="RegisterView">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            Text="Register here!"
+            VerticalOptions="Center" />
+        <Entry 
+            Placeholder="Name"
+            Text="{Binding Name}"
+            Keyboard="Email"
+            HorizontalOptions="Center"/>
+
+        <Entry
+            Placeholder="Password"
+            IsPassword="True"
+            Keyboard="Numeric"
+            Text="{Binding Password}"
+            VerticalOptions="Center"/>
+        
+        <Entry 
+            Placeholder="Email"
+            Text="{Binding Email}"     
+            Keyboard="Email"/>
+
+        <Button>
+            
+        </Button>
+        
     </VerticalStackLayout>
 </ContentPage>

@@ -17,5 +17,6 @@ namespace TriviaAppClean.ViewModels
         public int Rank { get; set; }
         User u = ((App)Application.Current).LoggedInUser;
         
+        
     }
 }
