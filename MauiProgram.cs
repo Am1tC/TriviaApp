@@ -59,7 +59,10 @@ public static class MauiProgram
         builder.Services.AddTransient<ProfileViewModel>();
         builder.Services.AddTransient<RecordesViewModels>();
         builder.Services.AddTransient<ShowQuestionViewModel>();
-        builder.Services.AddTransient<UserListViewModel>();
+        builder.Services.AddTransient<UsersListViewModel>();
+        builder.Services.AddTransient<MainPage>();
+        builder.Services.AddTransient<AppShell>();
+
 
         return builder;
     }

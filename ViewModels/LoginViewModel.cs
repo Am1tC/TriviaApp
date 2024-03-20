@@ -16,7 +16,8 @@ namespace TriviaAppClean.ViewModels
     {
         private TriviaWebAPIProxy triviaService;
         private RegisterView register;
-        public LoginViewModel(TriviaWebAPIProxy service, RegisterView register)
+        private AppShell shell;
+        public LoginViewModel(TriviaWebAPIProxy service, RegisterView register, AppShell shell)
         {
             InServerCall = false;
             this.triviaService = service;
@@ -24,12 +25,10 @@ namespace TriviaAppClean.ViewModels
             this.NameError = "This is a required field";
             this.PasswordError = "This is a required field";
             this.EmailError = "This is a required field";
-
-            //this.register = register;
-            //InServerCall = false;
-            //this.triviaService = service;
-            //this.LoginCommand = new Command(OnLogin);
-            //this.TapCommand = new Command(Tap);
+            
+            this.register = register;
+            this.TapCommand = new Command(Tap);
+            this.shell = shell;
         }
 
         #region Name
@@ -177,7 +176,7 @@ namespace TriviaAppClean.ViewModels
             //Choose the way you want to blobk the page while indicating a server call
             InServerCall = true;
             //await Shell.Current.GoToAsync("connectingToServer");
-            User u = await this.triviaService.LoginAsync("ofer@ofer.com", "1234");
+            User u = await this.triviaService.LoginAsync(this.Email, this.Password);
             //await Shell.Current.Navigation.PopModalAsync();
             InServerCall = false;
 
@@ -190,7 +189,8 @@ namespace TriviaAppClean.ViewModels
             }
             else
             {
-                await Shell.Current.DisplayAlert("Login", $"Login Succeed! for {u.Name} with {u.Questions.Count} Questions", "ok");
+                await Shell.Current.DisplayAlert("Login", $"Login Succeed! for {Name} with {u.Questions.Count} Questions", "ok");
+                Application.Current.MainPage = shell;
             }
         }
 
