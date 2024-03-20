@@ -9,7 +9,7 @@
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate views:GameView}"
-        Route="MainPage" />
+        Route="LoginView" />
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="MainTabs">
         <ShellContent 

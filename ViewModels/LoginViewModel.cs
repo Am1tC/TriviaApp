@@ -189,7 +189,7 @@ namespace TriviaAppClean.ViewModels
             }
             else
             {
-                await Shell.Current.DisplayAlert("Login", $"Login Succeed! for {Name} with {u.Questions.Count} Questions", "ok");
+                await Shell.Current.DisplayAlert("Login", $"Login Succeed! for {this.Name} with {u.Questions.Count} Questions", "ok");
                 Application.Current.MainPage = shell;
             }
         }

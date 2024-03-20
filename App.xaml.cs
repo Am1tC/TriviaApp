@@ -13,4 +13,14 @@ public partial class App : Application
 
 		MainPage = new AppShell();
 	}
+
+    //public App(LoginView v)
+    //{
+    //    LoggedInUser = null;
+    //    InitializeComponent();
+
+    //    MainPage = new NavigationPage(v);
+    //}
+	 //הצעה לבעיה שיש לנו עם הLOGIN
+	 // צריך לסדר את זה - שגיא דרורי
 }
