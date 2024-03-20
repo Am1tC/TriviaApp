@@ -9,7 +9,7 @@
             VerticalOptions="Start" 
             HorizontalOptions="Center" />
         <SearchBar Text="{Binding SearchText}"></SearchBar>
-        <CollectionView ItemsSource="{Binding Students}"
+        <CollectionView ItemsSource="{Binding Users}"
             ItemsLayout="VerticalGrid, 1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>

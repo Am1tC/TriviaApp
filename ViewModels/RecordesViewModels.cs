@@ -26,6 +26,8 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
+        private List<User> allUsers;
+
         private string searchText;
         public string SearchText
         {
@@ -44,10 +46,10 @@ namespace TriviaAppClean.ViewModels
         private void OnSearchTextChanged()
         {
             ObservableCollection<User> temp = new ObservableCollection<User>();
-            //ReadStudents();
+            ReadUsers();
             if (!String.IsNullOrEmpty(SearchText))
             {
-                foreach (User us in this.users)
+                foreach (User us in this.allUsers)
                 {
                     if (us.Name.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) == -1)
                     {
@@ -57,20 +59,34 @@ namespace TriviaAppClean.ViewModels
 
                 foreach (User us in temp)
                 {
-                    if (this.users.Contains(us))
+                    if (this.Users.Contains(us))
                     {
-                        this.users.Remove(us);
+                        this.Users.Remove(us);
                     }
                 }
             }
         }
-
-        private async void ReadUsers(TriviaWebAPIProxy service)
+        public RecordesViewModels(TriviaWebAPIProxy service)
         {
-            this.triviaService = service;
-            UsersService service = new UsersService();
-            List<User> list = await service.GetUsers();
+            triviaService = service;
+            ReadUsersFromServer();
+        }
+
+
+        private async void ReadUsersFromServer()
+        {
+            
+            List<User> list = await triviaService.GetAllUsers();
+            this.allUsers = list;
             this.Users = new ObservableCollection<User>(list);
+            
+        }
+
+        private void ReadUsers()
+        {
+
+            this.Users = new ObservableCollection<User>(allUsers);
+
         }
     }
 }
