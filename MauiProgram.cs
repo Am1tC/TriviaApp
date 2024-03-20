@@ -59,6 +59,8 @@ public static class MauiProgram
         builder.Services.AddTransient<ProfileViewModel>();
         builder.Services.AddTransient<RecordesViewModels>();
         builder.Services.AddTransient<ShowQuestionViewModel>();
+        builder.Services.AddTransient<UserListViewModel>();
+
         return builder;
     }
 }
