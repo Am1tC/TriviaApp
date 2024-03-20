@@ -18,7 +18,6 @@
         <Entry
          Placeholder="Password"
             IsPassword="True"
-            Keyboard="Numeric"
          Text="{Binding Password}"
          VerticalOptions="Center" 
          HorizontalOptions="Center" />
@@ -28,8 +27,7 @@
         
         
 
-        <Button Text="Go to Sign Up" Command="{Binding TapCommand}"
-                                                  CommandParameter="">
+        <Button Text="Go to Sign Up" Command="{Binding TapCommand}">
             
         </Button>
 

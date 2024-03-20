@@ -112,9 +112,9 @@ namespace TriviaAppClean.ViewModels
             {
                 await Shell.Current.DisplayAlert("Sign Up", "Sign Up Failed", "ok");
             }
-
+            
         }
-        #region
+        #region name
         private bool showNameError;
 
         public bool ShowNameError
@@ -249,6 +249,8 @@ namespace TriviaAppClean.ViewModels
             this.ShowNameError = !match.Success;
         }
         #endregion
+
+
 
     }
 }

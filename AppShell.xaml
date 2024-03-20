@@ -4,11 +4,11 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:TriviaAppClean.Views"
-    Shell.FlyoutBehavior="Disabled">
+    Shell.FlyoutBehavior="Flyout">
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate views:LoginView}"
+        ContentTemplate="{DataTemplate views:GameView}"
         Route="MainPage" />
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="MainTabs">

@@ -16,7 +16,6 @@
         <Entry
             Placeholder="Password"
             IsPassword="True"
-            Keyboard="Numeric"
             Text="{Binding Password}"
             VerticalOptions="Center"/>
         
@@ -25,7 +24,7 @@
             Text="{Binding Email}"     
             Keyboard="Email"/>
 
-        <Button>
+        <Button Command="{Binding SignUpCommand}" Text="Sign Up!">
             
         </Button>
         
