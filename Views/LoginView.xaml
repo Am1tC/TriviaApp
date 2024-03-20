@@ -26,24 +26,7 @@
         <Button Text="Submit Login" Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}"></Button>
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
         
-        <Label>
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="Don't have an account? " />
-                    <Span Text="click here"
-                  TextColor="Blue"
-                  TextDecorations="Underline">
-                        <Span.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding TapCommand}"
-                                                  CommandParameter=""/>
-                            
-                                           
-                        </Span.GestureRecognizers>
-                    </Span>
-                    <Span Text=" to register" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+        
 
         <Button Text="Go to Sign Up" Command="{Binding TapCommand}"
                                                   CommandParameter="">

@@ -17,7 +17,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("GV", typeof(GameView));
         Routing.RegisterRoute("LV", typeof(LoginView));
         Routing.RegisterRoute("PV", typeof(ProfileView));
-        Routing.RegisterRoute("RecV", typeof(RecordsView));
+        Routing.RegisterRoute("RecV", typeof(RecordesView));
         Routing.RegisterRoute("RegV", typeof(RegisterView));
         Routing.RegisterRoute("SQV", typeof(ShowQuestionView));
         Routing.RegisterRoute("ULV", typeof(UserListView));
