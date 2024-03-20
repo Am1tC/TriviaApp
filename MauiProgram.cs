@@ -37,7 +37,7 @@ public static class MauiProgram
         builder.Services.AddTransient<ConnectingToServerView>();
         builder.Services.AddTransient<GameView>();
         builder.Services.AddTransient<ProfileView>();
-        builder.Services.AddTransient<RecordsView>();
+        builder.Services.AddTransient<RecordesView>();
         builder.Services.AddTransient<ShowQuestionView>();
         builder.Services.AddTransient<UserListView>();
 
@@ -57,7 +57,7 @@ public static class MauiProgram
         builder.Services.AddTransient<ConnectingToServerViewModel>();
         builder.Services.AddTransient<GameViewModel>();
         builder.Services.AddTransient<ProfileViewModel>();
-        builder.Services.AddTransient<RecordsViewModel>();
+        builder.Services.AddTransient<RecordesViewModel>();
         builder.Services.AddTransient<ShowQuestionViewModel>();
         builder.Services.AddTransient<UserListViewModel>();
         return builder;
