@@ -18,7 +18,7 @@
             Route="GameStart"/>
         <ShellContent
             Title="Records"
-            ContentTemplate="{DataTemplate views:RecordsView}"
+            ContentTemplate="{DataTemplate views:RecordesView}"
             Route="Records"/>
         <ShellContent
             Title="My Profile"

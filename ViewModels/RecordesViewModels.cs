@@ -65,12 +65,12 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
-        private async void ReadUsers(TriviaWebAPIProxy service)
-        {
-            this.triviaService = service;
-            UsersService service = new UsersService();
-            List<User> list = await service.GetUsers();
-            this.Users = new ObservableCollection<User>(list);
-        }
+        //private async void ReadUsers(TriviaWebAPIProxy service)
+        //{
+        //    this.triviaService = service;
+        //    UsersService service = new UsersService();
+        //    List<User> list = await service.GetUsers();
+        //    this.Users = new ObservableCollection<User>(list);
+        //}
     }
 }
