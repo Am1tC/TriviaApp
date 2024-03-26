@@ -185,11 +185,11 @@ namespace TriviaAppClean.ViewModels
             if (u == null)
             {
 
-                await Shell.Current.DisplayAlert("Login", "Login Faild!", "ok");
+                await Application.Current.MainPage.DisplayAlert("Login", "Login Faild!", "ok");
             }
             else
             {
-                await Shell.Current.DisplayAlert("Login", $"Login Succeed! for {this.Name} with {u.Questions.Count} Questions", "ok");
+                await Application.Current.MainPage.DisplayAlert("Login", $"Login Succeed! for {this.Name} with {u.Questions.Count} Questions", "ok");
                 Application.Current.MainPage = shell;
             }
         }
