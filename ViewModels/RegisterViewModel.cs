@@ -7,114 +7,15 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TriviaAppClean.Models;
 using TriviaAppClean.Services;
+using TriviaAppClean.ViewModels;
+
 
 namespace TriviaAppClean.ViewModels
 {
     public class RegisterViewModel : ViewModelBase
     {
-        //private string email;
-        //public string Email
-        //{
-        //    get
-        //    {
-        //        return email;
-        //    }
-        //    set
-        //    {
-        //        email = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string name;
-        //public string Name
-        //{
-        //    get
-        //    {
-        //        return name;
-        //    }
-        //    set
-        //    {
-        //        name = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string password;
-        //public string Password
-        //{
-        //    get
-        //    {
-        //        return password;
-        //    }
-        //    set
-        //    {
-        //        password = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string passwordApprove;
-        //public string PasswordApprove
-        //{
-        //    get
-        //    {
-        //        return passwordApprove;
-        //    }
-        //    set
-        //    {
-        //        passwordApprove = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        private int id;
-        public int Id
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                id = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private TriviaWebAPIProxy triviaService;
-        public RegisterViewModel(TriviaWebAPIProxy service)
-        {
-            this.triviaService = service;
-            this.SignUpCommand = new Command(OnSignUp);
-        }
-
-        public ICommand SignUpCommand { get; set; }
-
-        private async void OnSignUp()
-        {
-
-            User u = new User();
-            u.Email = Email;
-            u.Password = Password;
-            u.Name = Name;
-            u.Score = 0;
-            await Shell.Current.GoToAsync("connectingToServer");
-            bool a = await this.triviaService.RegisterUser(u);
-            await Shell.Current.Navigation.PopModalAsync();
-            if (a == true)
-            {
-                ((App)Application.Current).LoggedInUser = u;
-                await Shell.Current.DisplayAlert("Sign Up", $"Sign Up succeed !! for {u.Name}", "ok");
-                Application.Current.MainPage = new AppShell();
-            }
-            else
-            {
-                await Shell.Current.DisplayAlert("Sign Up", "Sign Up Failed", "ok");
-            }
-            
-        }
-        #region name
+        #region FormValidation
+        #region Name
         private bool showNameError;
 
         public bool ShowNameError
@@ -151,13 +52,11 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged("NameError");
             }
         }
-
         private void ValidateName()
         {
             this.ShowNameError = string.IsNullOrEmpty(Name);
         }
         #endregion
-
         #region password
         private bool showPasswordError;
 
@@ -179,7 +78,7 @@ namespace TriviaAppClean.ViewModels
             set
             {
                 password = value;
-                ValidateName();
+                ValidatePassword();
                 OnPropertyChanged("Password");
             }
         }
@@ -195,23 +94,20 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged("PasswordError");
             }
         }
-
         private void ValidatePassword()
         {
-            this.ShowPasswordError = string.IsNullOrEmpty(Password);
+            this.ShowPasswordError = Password == null || Password.Length < 8; // need to inclode one letter  
         }
         #endregion
-
-
-        #region email
+        #region Email
         private bool showEmailError;
 
         public bool ShowEmailError
         {
-            get => showNameError;
+            get => showEmailError;
             set
             {
-                showNameError = value;
+                showEmailError = value;
                 OnPropertyChanged("ShowEmailError");
             }
         }
@@ -240,17 +136,71 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged("EmailError");
             }
         }
-
         private void ValidateEmail()
         {
-            string email = Email;
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            Match match = regex.Match(email);
-            this.ShowNameError = !match.Success;
+            Match match = regex.Match(Email);
+            if (match.Success)
+                ShowEmailError = true;
         }
         #endregion
+        
+        public Command SaveDataCommand { protected set; get; }
+        private TriviaWebAPIProxy triviaService;
+        public RegisterViewModel(TriviaWebAPIProxy service)
+        {
+            this.NameError = "This is must";
+            this.ShowNameError = false;
+            this.PasswordError = "The password must include at least 8 digits and with at least 1 letter";
+            this.ShowPasswordError = false;
+            this.EmailError = "The email format is incorrect";
+            this.ShowEmailError = false;
+            this.SaveDataCommand = new Command(() => SaveData());
+            this.triviaService = service;
+            ;
+        }
+        //This function validate the entire form upon submit!
+        private bool ValidateForm()
+        {
+            //Validate all fields first
+            ValidatePassword();
+            ValidateEmail();
+            ValidateName();
+
+            //check if any validation failed
+            if (ShowPasswordError || ShowEmailError ||
+                ShowNameError)
+                return false;
+            return true;
+        }
 
 
+        private async void SaveData()
+        {
+            if (ValidateForm())
+            {
+                User u = new User();
+                u.Email = this.Email;
+                u.Password = this.Password;
+                u.Name = this.Name;
+                u.Rank = 1;
+                u.Score = 0;
+                if (await this.triviaService.RegisterUser(u))
+                {
+                    await App.Current.MainPage.DisplayAlert("Save deta", "your deta is saved", "Confirm");
+                    await App.Current.MainPage.Navigation.PopAsync();
+                }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert("Save deta", "there is a problem with your deta", "Confirm");
+                }
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("Save deta", "there is a problem with your deta", "Confirm");
+            }
 
+        }
+        #endregion
     }
 }

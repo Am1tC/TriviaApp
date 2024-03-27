@@ -3,33 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaAppClean.Views.LoginView"
              Title="LoginView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="EnterButton" TargetType="Button">
+                <Setter Property="BackgroundColor"  Value="Green"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Italic"/>
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <VerticalStackLayout VerticalOptions="Center">
         <Label 
-            Text="Press To Login!"
+            Text="Login!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Entry 
-         Placeholder="Email"
-         Text="{Binding Email}"     
-            Keyboard="Email"
-            TextColor="Green"
-         HorizontalOptions="Center" />
-         
         <Entry
-         Placeholder="Password"
-            IsPassword="True"
-         Text="{Binding Password}"
-         VerticalOptions="Center" 
-         HorizontalOptions="Center" />
+            Text="{Binding Email}"
+            Placeholder="Enter your Email"/>
+        <Entry
+            Text="{Binding Password}"
+            Placeholder="Enter your Password"/>
 
-        <Button Text="Submit Login" Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}"></Button>
-        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
-        
-        
-
-        <Button Text="Go to Sign Up" Command="{Binding TapCommand}">
-            
+        <Button Text="Submit Login" Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}"
+                
+                Style="{StaticResource EnterButton}">
         </Button>
 
+        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Gray" IsVisible="{Binding InServerCall}"></ActivityIndicator>
+        <Button Text="Sign Up" Command="{Binding IntoSignUpCommand}"
+                
+                 Style="{StaticResource EnterButton}"
+                />
+
     </VerticalStackLayout>
+
 </ContentPage>

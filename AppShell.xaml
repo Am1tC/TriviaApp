@@ -6,10 +6,10 @@
     xmlns:views="clr-namespace:TriviaAppClean.Views"
     Shell.FlyoutBehavior="Flyout">
 
-    <ShellContent
+    <!--<ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate views:GameView}"
-        Route="LoginView" />
+        Route="LoginView" />-->
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="MainTabs">
         <ShellContent 
@@ -45,10 +45,4 @@
             ContentTemplate="{DataTemplate views:ShowQuestionView}"
             Route="AllQuestions"/>
     </FlyoutItem>
-
-
-
-
-
-
 </Shell>

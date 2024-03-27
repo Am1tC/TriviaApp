@@ -3,30 +3,66 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaAppClean.Views.RegisterView"
              Title="RegisterView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Register here!"
-            VerticalOptions="Center" />
-        <Entry 
-            Placeholder="Name"
-            Text="{Binding Name}"
-            Keyboard="Email"
-            HorizontalOptions="Center"/>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelNameStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+            </Style>
+            <Style x:Key="labelErrorStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="End" />
+                <Setter Property="TextColor" Value="Red" />
+                <Setter Property="FontSize" Value="Small" />
+            </Style>
+            <Style x:Key="entryStyle" TargetType="Entry">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+            </Style>
 
-        <Entry
-            Placeholder="Password"
-            IsPassword="True"
-            Text="{Binding Password}"
-            VerticalOptions="Center"/>
-        
-        <Entry 
-            Placeholder="Email"
-            Text="{Binding Email}"     
-            Keyboard="Email"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Padding="0,20,0,0">
+        <!-- name -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Text="Nickname" Grid.Column="0" Style="{StaticResource labelNameStyle}"/>
+            <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
+        </Grid>
+        <Entry Placeholder="Enter your name" Text="{Binding Name}" Style="{StaticResource entryStyle}"/>
 
-        <Button Command="{Binding SignUpCommand}" Text="Sign Up!">
-            
-        </Button>
+        <!-- Email -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Text="Email" Grid.Column="0" Style="{StaticResource labelNameStyle}"/>
+            <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
+        </Grid>
+        <Entry Placeholder="Enter your Email" Text="{Binding Email}" Style="{StaticResource entryStyle}"/>
+
+        <!-- Password -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Text="Password" Grid.Column="0" Style="{StaticResource labelNameStyle}"/>
+            <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
+        </Grid>
+        <Entry Placeholder="Enter your Password" Text="{Binding Password}" Style="{StaticResource entryStyle}"/>
+
         
-    </VerticalStackLayout>
+        <Button Text="Save" Command="{Binding SaveDataCommand}"></Button>
+    </StackLayout>
 </ContentPage>

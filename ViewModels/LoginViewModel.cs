@@ -22,7 +22,6 @@ namespace TriviaAppClean.ViewModels
             InServerCall = false;
             this.triviaService = service;
             this.LoginCommand = new Command(OnLogin);
-            this.NameError = "This is a required field";
             this.PasswordError = "This is a required field";
             this.EmailError = "This is a required field";
             
@@ -30,50 +29,6 @@ namespace TriviaAppClean.ViewModels
             this.TapCommand = new Command(Tap);
             this.shell = shell;
         }
-
-        #region Name
-        private bool showNameError;
-
-        public bool ShowNameError
-        {
-            get => showNameError;
-            set
-            {
-                showNameError = value;
-                OnPropertyChanged("ShowNameError");
-            }
-        }
-
-        private string name;
-
-        public string Name
-        {
-            get => name;
-            set
-            {
-                name = value;
-                ValidateName();
-                OnPropertyChanged("Name");
-            }
-        }
-
-        private string nameError;
-
-        public string NameError
-        {
-            get => nameError;
-            set
-            {
-                nameError = value;
-                OnPropertyChanged("NameError");
-            }
-        }
-
-        private void ValidateName()
-        {
-            this.ShowNameError = string.IsNullOrEmpty(Name);
-        }
-        #endregion
 
         #region password
         private bool showPasswordError;
@@ -96,7 +51,7 @@ namespace TriviaAppClean.ViewModels
             set
             {
                 password = value;
-                ValidateName();
+                ValidatePassword();
                 OnPropertyChanged("Password");
             }
         }
@@ -118,17 +73,15 @@ namespace TriviaAppClean.ViewModels
             this.ShowPasswordError = string.IsNullOrEmpty(Password);
         }
         #endregion
-
-
         #region email
         private bool showEmailError;
 
         public bool ShowEmailError
         {
-            get => showNameError;
+            get => showEmailError;
             set
             {
-                showNameError = value;
+                showEmailError = value;
                 OnPropertyChanged("ShowEmailError");
             }
         }
@@ -163,11 +116,9 @@ namespace TriviaAppClean.ViewModels
             string email = Email;
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             Match match = regex.Match(email);
-            this.ShowNameError = !match.Success;
+            this.showEmailError = !match.Success;
         }
         #endregion
-
-
 
 
         public ICommand LoginCommand { get; set; }
@@ -185,11 +136,11 @@ namespace TriviaAppClean.ViewModels
             if (u == null)
             {
 
-                await Application.Current.MainPage.DisplayAlert("Login", "Login Faild!", "ok");
+                await Application.Current.MainPage.DisplayAlert("Fail", "Login Faild!", "ok");
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Login", $"Login Succeed! for {this.Name} with {u.Questions.Count} Questions", "ok");
+                await Application.Current.MainPage.DisplayAlert("Success", $"Login Succeed! for {u.Name} with {u.Questions.Count} Questions", "ok");
                 Application.Current.MainPage = shell;
             }
         }
