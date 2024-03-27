@@ -221,7 +221,5 @@ namespace TriviaAppClean.ViewModels
         {
             await Application.Current.MainPage.Navigation.PushAsync(register);
         }
-
-
     }
 }

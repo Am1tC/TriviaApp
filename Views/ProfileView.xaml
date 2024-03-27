@@ -9,23 +9,29 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
-        <Label x:Name="uRank">
+        <Label x:Name="uRank" Text="{Binding Rank}">
             
         </Label>
-        <Label>
+        <Label x:Name="uMail" Text="{Binding Email}">
 
         </Label>
-        <Label>
+        <Label x:Name="uName" Text="{Binding Name}">
 
         </Label>
-        <Label>
+        <Label x:Name="uPass" Text="{Binding Pass}">
 
         </Label>
-        <Label>
+        <Label x:Name="uScore" Text="{Binding Score}">
 
         </Label>
-        <Label>
-
+        <!--<Label Text="Questions Added:" Text="{Binding }>
+            
         </Label>
+        <Label x:Name="Questions Added" Text="{Binding }>
+
+        </Label>-->
+        <Button Text="Update" Command="{Binding UpdateCommand}">
+            
+        </Button>
     </VerticalStackLayout>
 </ContentPage>
