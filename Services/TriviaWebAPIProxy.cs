@@ -18,13 +18,13 @@ namespace TriviaAppClean.Services
         public List<User> TheUsers { get; set; }
     }
 
-  
+
     public class TriviaWebAPIProxy
     {
         private HttpClient client;
         private string baseUri;
         private static Random r = new Random();
-        
+
         public TriviaWebAPIProxy()
         {
             //Set client handler to support cookies!!
@@ -33,7 +33,7 @@ namespace TriviaAppClean.Services
 
             //Create client with the handler!
             this.client = new HttpClient(handler, true);
-            this.baseUri = "https://script.google.com/macros/s/AKfycbxRQSGDHTjSmrk1e4DkVD3YvA7UPjRgN6XV4dlgdEQWmiiMd2mA2EezUF9YPrgkqHwtEg/exec"; 
+            this.baseUri = "https://script.google.com/macros/s/AKfycbx0wFVKvR8bl3GxOScSRIhSVnYkahEwFeyyx8h9pANqybeEBZEtD0huZZOs7FEJFmtBIw/exec";
         }
 
         //Login - if email and password are correct User object is returned. otherwise a null will be returned
@@ -147,7 +147,7 @@ namespace TriviaAppClean.Services
         //This method register a new user into the server database. A previous login is NOT required! The nick name and email must be uniqe!
         //it returns true is succeeded or false otherwise
         //questions are ignored upon registering a user and shoul dbe added seperatly.
-        
+
         public async Task<bool> RegisterUser(User u)
         {
             try
@@ -346,7 +346,7 @@ namespace TriviaAppClean.Services
         {
             List<Rank> ranks = new List<Rank>();
 
-            ranks.Add(new Rank() { Id = 0, Name="Rookie" });
+            ranks.Add(new Rank() { Id = 0, Name = "Rookie" });
             ranks.Add(new Rank() { Id = 1, Name = "Master" });
             ranks.Add(new Rank() { Id = 2, Name = "Admin" });
 
