@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-System.Windows.Input;
 using TriviaAppClean.Models;
-using TriviaAppClean.Services;
-using TriviaAppClean.Views;
-System.Text.RegularExpressions;
 
 namespace TriviaAppClean.ViewModels
 {
@@ -139,7 +135,7 @@ namespace TriviaAppClean.ViewModels
 
         private void ValidatePassword()
         {
-            this.ShowPasswordError = string.IsNullOrEmpty(Password);
+            this.ShowPasswordError = string.IsNullOrEmpty(pass);
         }
         #endregion
 
@@ -164,7 +160,7 @@ namespace TriviaAppClean.ViewModels
             set
             {
                 email = value;
-                ValidateEmail();
+                //ValidateEmail();
                 OnPropertyChanged("Email");
             }
         }
@@ -181,13 +177,13 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
-        private void ValidateEmail()
-        {
-            string email = Email;
-            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            Match match = regex.Match(email);
-            this.ShowNameError = !match.Success;
-        }
+        //private void ValidateEmail()
+        //{
+        //    string email = Email;
+        //    Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+        //    Match match = regex.Match(email);
+        //    this.ShowNameError = !match.Success;
+        //}
         #endregion
 
         public ProfileViewModel()
@@ -195,7 +191,7 @@ namespace TriviaAppClean.ViewModels
             this.u = ((App)Application.Current).LoggedInUser;
             Id= this.u.Id;
             this.Name = this.u.Name;
-            this.Password = this.u.Password;
+            this.pass = this.u.Password;
             Score = this.u.Score;
             Rank = this.u.Rank;
 
