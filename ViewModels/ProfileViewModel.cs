@@ -162,7 +162,7 @@ namespace TriviaAppClean.ViewModels
             set
             {
                 email = value;
-                ValidateEmail();
+                //ValidateEmail();
                 OnPropertyChanged("Email");
             }
         }
