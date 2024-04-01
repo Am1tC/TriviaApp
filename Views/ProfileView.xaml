@@ -12,15 +12,24 @@
         <Label x:Name="uRank" Text="{Binding Rank}">
 
         </Label>
-        <Entry x:Name="uMail" Text="{Binding Email} ">
+        <Entry x:Name="uMail" Text="{Binding Email}" IsEnabled="{Binding emailEdit}">
 
         </Entry>
-        <Entry x:Name="uName" Text="{Binding Name}">
+        <Button Text="Edit Email" Command="{Binding EmailSwitchCommand}">
+            
+        </Button>
+        <Entry x:Name="uName" Text="{Binding Name}" IsEnabled="{Binding nameEdit}">
 
         </Entry>
-        <Entry x:Name="uPass" Text="{Binding Pass} ">
+        <Button Text="Edit Name" Command="{Binding NameSwitchCommand}">
+
+        </Button>
+        <Entry x:Name="uPass" Text="{Binding Pass} " IsEnabled="{Binding passwordEdit}">
 
         </Entry>
+        <Button Text="Edit Password"  Command="{Binding PasswordSwitchCommand}">
+
+        </Button>
         <Label x:Name="uScore" Text="{Binding Score}">
 
         </Label>
@@ -32,5 +41,8 @@
         <Button Text="Update" Command="{Binding UpdateCommand}">
             
         </Button>
+        <Label Text="{Binding updateMsg}">
+            
+        </Label>
     </VerticalStackLayout>
 </ContentPage>
