@@ -10,17 +10,17 @@
             HorizontalOptions="Center" />
 
         <Label x:Name="uRank" Text="{Binding Rank}">
-            
-        </Label>
-        <Label x:Name="uMail" Text="{Binding Email}">
 
         </Label>
-        <Label x:Name="uName" Text="{Binding Name}">
+        <Entry x:Name="uMail" Text="{Binding Email} ">
 
-        </Label>
-        <Label x:Name="uPass" Text="{Binding Pass}">
+        </Entry>
+        <Entry x:Name="uName" Text="{Binding Name}">
 
-        </Label>
+        </Entry>
+        <Entry x:Name="uPass" Text="{Binding Pass} ">
+
+        </Entry>
         <Label x:Name="uScore" Text="{Binding Score}">
 
         </Label>
@@ -28,7 +28,6 @@
             
         </Label>
         <Label x:Name="Questions Added" Text="{Binding }>
-
         </Label>-->
         <Button Text="Update" Command="{Binding UpdateCommand}">
             
