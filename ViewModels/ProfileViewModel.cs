@@ -11,14 +11,20 @@ namespace TriviaAppClean.ViewModels
 {
     public class ProfileViewModel:ViewModelBase
     {
+        private bool nameEdit;
+        private bool emailEdit;
+        private bool passwordEdit;
 
-        public int id;
-        public string email;
-        public string name;
-        public string pass;
-        public int score;
-        public int rank;
+
+        private int id;
+        private string email;
+        private string name;
+        private string pass;
+        private int score;
+        private int rank;
         private User u;
+        private TriviaWebAPIProxy service;
+        private string updateMsg;
 
         public int Id
         {
@@ -147,10 +153,10 @@ namespace TriviaAppClean.ViewModels
 
         public bool ShowEmailError
         {
-            get => showNameError;
+            get => showEmailError;
             set
             {
-                showNameError = value;
+                showEmailError = value;
                 OnPropertyChanged("ShowEmailError");
             }
         }
@@ -188,7 +194,7 @@ namespace TriviaAppClean.ViewModels
         }
         #endregion
 
-        public ProfileViewModel()
+        public ProfileViewModel(TriviaWebAPIProxy service)
         {
             this.u = ((App)Application.Current).LoggedInUser;
             Id= this.u.Id;
@@ -198,11 +204,58 @@ namespace TriviaAppClean.ViewModels
             Rank = this.u.Rank;
 
             this.UpdateCommand = new Command(Update);
+
+            NameSwitchCommand = new Command(editName);
+            EmailSwitchCommand = new Command(editEmail);
+            PasswordSwitchCommand = new Command(editPassword);
+
+            updateMsg = "";
+            nameEdit = false;
+            passwordEdit = false;
+            emailEdit = false;
+
         }
         public Command UpdateCommand { get; set; }
+        public Command NameSwitchCommand { get; set; }
+        public Command EmailSwitchCommand { get; set; }
+        public Command PasswordSwitchCommand { get; set; }
+
         private async void Update()
         {
+            ValidateEmail();
+            ValidateName();
+            ValidatePassword();
 
+            if(!ShowNameError && !showEmailError && !showPasswordError)
+            {
+                u.Email = Email;
+                u.Password = this.Pass;
+                u.Name = this.Name;
+
+                bool isUpdated;
+                isUpdated = await service.UpdateUser(u);
+                if (isUpdated)
+                {
+                    updateMsg = "Updated Successfully!";
+                }
+                else
+                {
+                    updateMsg = "Failed to update";
+                }
+            }
+        }
+
+        private void editName()
+        {
+            nameEdit = !nameEdit;
+        }
+        private void editPassword()
+        {
+            passwordEdit = !passwordEdit;
+        }
+        private void editEmail()
+        {
+            emailEdit = !emailEdit;
         }
     }
 }
