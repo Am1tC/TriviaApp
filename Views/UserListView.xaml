@@ -6,8 +6,29 @@
     <VerticalStackLayout>
         <Label 
             Text="Users List:"
+           FontAttributes="Bold"
+            FontSize="Large"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0"
+           Text="Id"
+           FontAttributes="Bold"/>
+            <Label Grid.Column="1" Grid.Row="0"
+           Text="Email"
+           FontAttributes="Bold"/>
+            <Label Grid.Column="2" Grid.Row="0"
+           Text="Name"
+           FontAttributes="Bold"/>
+        </Grid>
         <CollectionView ItemsSource="{Binding Users}"
                 ItemsLayout="VerticalList"
                 SelectedItem="{Binding SelectedUser}"
@@ -17,19 +38,18 @@
                     <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Grid.Row="1"
+                        <Label Grid.Column="0" Grid.Row="0"
                                Text="{Binding Id}"
                                FontAttributes="Bold"/>
-                        <Label Grid.Column="0" Grid.Row="0"
-                               Text="{Binding Email}"
-                               HorizontalOptions="Center"/>
                         <Label Grid.Column="1" Grid.Row="0"
+                               Text="{Binding Email}"/>
+                        <Label Grid.Column="2" Grid.Row="0"
                                Text="{Binding Name}"
                                FontAttributes="Italic"/>
                     </Grid>

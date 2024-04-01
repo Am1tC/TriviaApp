@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TriviaAppClean.Views.UsersDetailsView"
+             Title="UsersDetailsView">
+    <VerticalStackLayout>
+        <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" RowSpacing="30" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Label Grid.Column="0" Grid.Row="0"
+             Text="Id:"
+             FontAttributes="Bold"/>
+             <Label Grid.Column="0" Grid.Row="1"
+             Text="Name:"
+             FontAttributes="Bold"/>
+             <Label Grid.Column="0" Grid.Row="2"
+             Text="Email: "
+             FontAttributes="Bold"/>
+
+            <Label Grid.Column="0" Grid.Row="3"
+             Text="Rank: "
+             FontAttributes="Bold"/>
+
+            <Label Grid.Column="0" Grid.Row="4"
+             Text="Score: "
+             FontAttributes="Bold"/>
+
+
+            <Label Grid.Column="0" Grid.Row="0"
+                               Text="{Binding SelectedUser.Id}" HorizontalOptions="Center"
+                               FontAttributes="Bold"/>
+            
+            <Label Grid.Column="0" Grid.Row="1"
+                   Text="{Binding SelectedUser.Name}" 
+                   FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Label Grid.Column="0" Grid.Row="2"
+              Text="{Binding SelectedUser.Email}"
+              FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Label Grid.Column="0" Grid.Row="3"
+                               Text="{Binding SelectedUser.Rank}"
+                               FontAttributes="Bold" HorizontalOptions="Center"/>
+            
+            <Label Grid.Column="0" Grid.Row="4"
+                               Text="{Binding SelectedUser.Score}" FontAttributes="Bold"
+                               HorizontalOptions="Center"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

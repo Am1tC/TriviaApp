@@ -65,6 +65,5 @@ namespace TriviaAppClean.ViewModels
                 SelectedUser = null;
             }
         }
-
     }
 }
