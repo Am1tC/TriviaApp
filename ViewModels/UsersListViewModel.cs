@@ -8,5 +8,7 @@ namespace TriviaAppClean.ViewModels
 {
     public class UsersListViewModel:ViewModelBase
     {
+
+
     }
 }
