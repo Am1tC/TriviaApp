@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TriviaAppClean.Models;
+using System.Text.RegularExpressions;
+using TriviaAppClean.Services;
 
 namespace TriviaAppClean.ViewModels
 {
@@ -116,7 +118,7 @@ namespace TriviaAppClean.ViewModels
             set
             {
                 pass = value;
-                ValidateName();
+                ValidatePassword();
                 OnPropertyChanged("Password");
             }
         }
@@ -160,7 +162,7 @@ namespace TriviaAppClean.ViewModels
             set
             {
                 email = value;
-                //ValidateEmail();
+                ValidateEmail();
                 OnPropertyChanged("Email");
             }
         }
@@ -177,13 +179,13 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
-        //private void ValidateEmail()
-        //{
-        //    string email = Email;
-        //    Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-        //    Match match = regex.Match(email);
-        //    this.ShowNameError = !match.Success;
-        //}
+        private void ValidateEmail()
+        {
+            string email = Email;
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(email);
+            this.ShowEmailError = !match.Success;
+        }
         #endregion
 
         public ProfileViewModel()
