@@ -44,8 +44,42 @@
         <Label Text="{Binding updateMsg}">
             
         </Label>
-        <CollectionView ItemsSource="{Binding Qs}" >
-            
+        <CollectionView ItemsSource="{Binding Qs}" ItemsLayout="VerticalGrid, 1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                           Text="{Binding QText}" 
+                           FontAttributes="Bold"/>
+                        <Label Grid.Column="0" Grid.Row="1"
+                           Text="{Binding CorrectAnswer}" 
+                           FontAttributes="Bold" HorizontalOptions="Center"/>
+                        <Label Grid.Column="1" Grid.Row="1"
+                           Text="{Binding Bad1}" 
+                           FontAttributes="Italic"/>
+                        <Label Grid.Column="0" Grid.Row="2"
+                           Text="{Binding Bad2}" 
+                           FontAttributes="None" 
+                           HorizontalOptions="Center"/>
+                        <Label Grid.Column="1" Grid.Row="2"
+                            Text="{Binding Bad3}" 
+                             FontAttributes="None" 
+                             HorizontalOptions="Center"/>
+                        <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"
+                            Text="{Binding Status}" 
+                             FontAttributes="None" 
+                             HorizontalOptions="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
         </CollectionView>
     </VerticalStackLayout>
 </ContentPage>

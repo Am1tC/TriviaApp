@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 
 namespace TriviaAppClean.ViewModels
 {
-    public class ProfileViewModel:ViewModelBase
+    public class ProfileViewModel : ViewModelBase
     {
         private bool nameEdit;
         private bool emailEdit;
@@ -183,7 +183,7 @@ namespace TriviaAppClean.ViewModels
         public ProfileViewModel(TriviaWebAPIProxy service)
         {
             this.u = ((App)Application.Current).LoggedInUser;
-            Id= this.u.Id;
+            Id = this.u.Id;
             this.Name = this.u.Name;
             this.pass = this.u.Password;
             Score = this.u.Score;
@@ -216,7 +216,7 @@ namespace TriviaAppClean.ViewModels
             ValidateName();
             ValidatePassword();
 
-            if(!ShowNameError && !showEmailError && !showPasswordError)
+            if (!ShowNameError && !showEmailError && !showPasswordError)
             {
                 u.Email = Email;
                 u.Password = this.Pass;
@@ -253,34 +253,6 @@ namespace TriviaAppClean.ViewModels
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         #region QuestionList
         private ObservableCollection<AmericanQuestion> qs;
         public ObservableCollection<AmericanQuestion> Qs
@@ -297,12 +269,12 @@ namespace TriviaAppClean.ViewModels
         }
 
 
-       
 
 
 
-        
-        
+
+
+
 
         #endregion
 
