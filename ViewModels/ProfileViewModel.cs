@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TriviaAppClean.Models;
 using System.Text.RegularExpressions;
 using TriviaAppClean.Services;
+using System.Collections.ObjectModel;
 
 namespace TriviaAppClean.ViewModels
 {
@@ -46,21 +47,6 @@ namespace TriviaAppClean.ViewModels
 
 
 
-        //public string Email
-        //{
-        //    get { return email; }
-        //    set { this.email = value; }
-        //}
-        //public string Name
-        //{
-        //    get { return name; }
-        //    set { name = value; }
-        //}
-        //public string Pass
-        //{
-        //    get { return pass; }
-        //    set { pass = value; }
-        //}
         #region Name
         private bool showNameError;
 
@@ -203,6 +189,8 @@ namespace TriviaAppClean.ViewModels
             Score = this.u.Score;
             Rank = this.u.Rank;
 
+            this.service = service;
+
             this.UpdateCommand = new Command(Update);
 
             NameSwitchCommand = new Command(editName);
@@ -257,5 +245,92 @@ namespace TriviaAppClean.ViewModels
         {
             emailEdit = !emailEdit;
         }
+
+
+
+
+        #region QuestionList
+        private ObservableCollection<User> users;
+        public ObservableCollection<User> Users
+        {
+            get
+            {
+                return this.users;
+            }
+            set
+            {
+                this.users = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<User> allUsers;
+
+        //private string searchText;
+        //public string SearchText
+        //{
+        //    get
+        //    {
+        //        return this.searchText;
+        //    }
+        //    set
+        //    {
+        //        this.searchText = value;
+        //        OnSearchTextChanged();
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+
+
+        private void OnSearchTextChanged()
+        {
+            ObservableCollection<User> temp = new ObservableCollection<User>();
+            ReadUsers();
+            if (!String.IsNullOrEmpty(this.Name))
+            {
+                foreach (User us in this.allUsers)
+                {
+                    if (us.Name.IndexOf(this.Name, StringComparison.OrdinalIgnoreCase) == -1)
+                    {
+                        temp.Add(us);
+                    }
+                }
+
+                foreach (User us in temp)
+                {
+                    if (this.Users.Contains(us))
+                    {
+                        this.Users.Remove(us);
+                    }
+                }
+            }
+        }
+        //public RecordesViewModels(TriviaWebAPIProxy service)
+        //{
+        //    triviaService = service;
+        //    ReadUsersFromServer();
+        //}
+
+
+        private async void ReadUsersFromServer()
+        {
+
+            List<User> list = await service.GetAllUsers();
+            this.allUsers = list;
+            this.Users = new ObservableCollection<User>(list);
+
+        }
+
+        private void ReadUsers()
+        {
+
+            this.Users = new ObservableCollection<User>(allUsers);
+
+        }
+
+        #endregion
+
+
     }
 }
