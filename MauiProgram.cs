@@ -43,6 +43,8 @@ public static class MauiProgram
         builder.Services.AddTransient<UsersDetailsView>();
 
 
+        builder.Services.AddSingleton<GameView>();
+
         return builder;
     }
 
@@ -66,6 +68,7 @@ public static class MauiProgram
         builder.Services.AddTransient<MainPage>();
         builder.Services.AddTransient<AppShell>();
 
+        builder.Services.AddSingleton<GameViewModel>();
 
         return builder;
     }

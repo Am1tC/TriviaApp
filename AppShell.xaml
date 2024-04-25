@@ -13,7 +13,7 @@
 
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="MainTabs">
         <ShellContent 
-            Title="Game Start"
+            Title="GameStart"
             ContentTemplate="{DataTemplate views:GameView}"
             Route="GameStart"/>
         <ShellContent
