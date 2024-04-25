@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TriviaAppClean.Models;
 using System.Text.RegularExpressions;
 using TriviaAppClean.Services;
+using System.Collections.ObjectModel;
 
 namespace TriviaAppClean.ViewModels
 {
@@ -46,21 +47,6 @@ namespace TriviaAppClean.ViewModels
 
 
 
-        //public string Email
-        //{
-        //    get { return email; }
-        //    set { this.email = value; }
-        //}
-        //public string Name
-        //{
-        //    get { return name; }
-        //    set { name = value; }
-        //}
-        //public string Pass
-        //{
-        //    get { return pass; }
-        //    set { pass = value; }
-        //}
         #region Name
         private bool showNameError;
 
@@ -202,6 +188,10 @@ namespace TriviaAppClean.ViewModels
             this.pass = this.u.Password;
             Score = this.u.Score;
             Rank = this.u.Rank;
+            this.Qs = new ObservableCollection<AmericanQuestion>(u.Questions);
+
+
+            this.service = service;
 
             this.UpdateCommand = new Command(Update);
 
@@ -257,5 +247,65 @@ namespace TriviaAppClean.ViewModels
         {
             emailEdit = !emailEdit;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #region QuestionList
+        private ObservableCollection<AmericanQuestion> qs;
+        public ObservableCollection<AmericanQuestion> Qs
+        {
+            get
+            {
+                return this.qs;
+            }
+            set
+            {
+                this.qs = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+       
+
+
+
+        
+        
+
+        #endregion
+
+
     }
 }

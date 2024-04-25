@@ -44,5 +44,8 @@
         <Label Text="{Binding updateMsg}">
             
         </Label>
+        <CollectionView ItemsSource="{Binding Qs}" >
+            
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>
