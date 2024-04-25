@@ -33,7 +33,7 @@ namespace TriviaAppClean.Services
 
             //Create client with the handler!
             this.client = new HttpClient(handler, true);
-            this.baseUri = "https://script.google.com/macros/s/AKfycbx0wFVKvR8bl3GxOScSRIhSVnYkahEwFeyyx8h9pANqybeEBZEtD0huZZOs7FEJFmtBIw/exec";
+            this.baseUri = "https://script.google.com/macros/s/AKfycbyyjw7rWbX_VXSOHXcxDYh6ovWuTWOg-FweUnA4MatHiLe4xh_pJmyl4yoNAZWp_n6GKg/exec";
         }
 
         //Login - if email and password are correct User object is returned. otherwise a null will be returned

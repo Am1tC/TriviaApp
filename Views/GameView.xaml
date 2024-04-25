@@ -21,8 +21,8 @@
             HorizontalOptions="CenterAndExpand"
             VerticalOptions="CenterAndExpand"
             HeightRequest="200"
-                WidthRequest="200"
-                FontSize="Large"/>
+            WidthRequest="200"
+            FontSize="Large"/>
 
 
 </ContentPage>
