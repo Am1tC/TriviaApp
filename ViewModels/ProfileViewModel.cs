@@ -188,6 +188,8 @@ namespace TriviaAppClean.ViewModels
             this.pass = this.u.Password;
             Score = this.u.Score;
             Rank = this.u.Rank;
+            this.Qs = new ObservableCollection<AmericanQuestion>(u.Questions);
+
 
             this.service = service;
 
@@ -249,85 +251,58 @@ namespace TriviaAppClean.ViewModels
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         #region QuestionList
-        private ObservableCollection<User> users;
-        public ObservableCollection<User> Users
+        private ObservableCollection<AmericanQuestion> qs;
+        public ObservableCollection<AmericanQuestion> Qs
         {
             get
             {
-                return this.users;
+                return this.qs;
             }
             set
             {
-                this.users = value;
+                this.qs = value;
                 OnPropertyChanged();
             }
         }
 
-        private List<User> allUsers;
 
-        //private string searchText;
-        //public string SearchText
-        //{
-        //    get
-        //    {
-        //        return this.searchText;
-        //    }
-        //    set
-        //    {
-        //        this.searchText = value;
-        //        OnSearchTextChanged();
-        //        OnPropertyChanged();
-        //    }
-        //}
+       
 
 
 
-        private void OnSearchTextChanged()
-        {
-            ObservableCollection<User> temp = new ObservableCollection<User>();
-            ReadUsers();
-            if (!String.IsNullOrEmpty(this.Name))
-            {
-                foreach (User us in this.allUsers)
-                {
-                    if (us.Name.IndexOf(this.Name, StringComparison.OrdinalIgnoreCase) == -1)
-                    {
-                        temp.Add(us);
-                    }
-                }
-
-                foreach (User us in temp)
-                {
-                    if (this.Users.Contains(us))
-                    {
-                        this.Users.Remove(us);
-                    }
-                }
-            }
-        }
-        //public RecordesViewModels(TriviaWebAPIProxy service)
-        //{
-        //    triviaService = service;
-        //    ReadUsersFromServer();
-        //}
-
-
-        private async void ReadUsersFromServer()
-        {
-
-            List<User> list = await service.GetAllUsers();
-            this.allUsers = list;
-            this.Users = new ObservableCollection<User>(list);
-
-        }
-
-        private void ReadUsers()
-        {
-
-            this.Users = new ObservableCollection<User>(allUsers);
-
-        }
+        
+        
 
         #endregion
 
