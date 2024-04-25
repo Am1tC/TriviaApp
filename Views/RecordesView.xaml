@@ -9,14 +9,32 @@
             VerticalOptions="Start" 
             HorizontalOptions="Center" />
         <SearchBar Text="{Binding SearchText}"></SearchBar>
+        <Grid Padding="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0"
+                           Text="Name:" 
+                           FontAttributes="Bold"/>
+            <Label Grid.Column="1" Grid.Row="0"
+                           Text="Score:" 
+                           FontAttributes="Bold" HorizontalOptions="Center"/>
+        </Grid>
+        <ScrollView>
         <CollectionView ItemsSource="{Binding Users}"
             ItemsLayout="VerticalGrid, 1">
+                
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
+                            
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -32,5 +50,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        </ScrollView>
     </StackLayout>
 </ContentPage>

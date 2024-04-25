@@ -32,6 +32,6 @@
         </Button>
 
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Gray" IsVisible="{Binding InServerCall}"></ActivityIndicator>
-        <Button Text="Sign Up" Command="{Binding IntoSignUpCommand}" Style="{StaticResource EnterButton}"/>
+        <Button Text="Sign Up" Command="{Binding TapCommand}" Style="{StaticResource EnterButton}"/>
     </VerticalStackLayout>
 </ContentPage>

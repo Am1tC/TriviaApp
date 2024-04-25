@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaAppClean.Views.GameView"
              Title="GameView">
-    <ContentPage.Resources>
+    <!--<ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="EnterButton" TargetType="Button">
                 <Setter Property="BackgroundColor"  Value="Green"/>
@@ -24,5 +24,39 @@
             WidthRequest="200"
             FontSize="Large"/>
 
+
+</ContentPage>-->
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="dStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="FontAttributes" Value="Italic"/>
+                <Setter Property="FontSize" Value="Title"/>
+            </Style>
+            <Style x:Key="bStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="FontAttributes" Value="Italic" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <VerticalStackLayout>
+        <Label Text="Trivia Game:" Style="{StaticResource dStyle}"></Label>
+        <Label Text="{Binding QuestionContent}" FontSize="Subtitle" FontAttributes="Bold"/>
+
+        <StackLayout Orientation="Vertical" x:Name="stackLayout">
+            <Button Text="{Binding CorrectAnswer}" Command="{Binding CorrectCommand}" IsEnabled="{Binding Enabled}" BackgroundColor="{Binding CorrectColor}"/>
+            <Button Text="{Binding WrongAnswer1}" Command="{Binding WrongCommand}" IsEnabled="{Binding Enabled}" BackgroundColor="{Binding W1Color}"/>
+            <Button Text="{Binding WrongAnswer2}" Command="{Binding WrongCommand}" IsEnabled="{Binding Enabled}" BackgroundColor="{Binding W2Color}"/>
+            <Button Text="{Binding WrongAnswer3}" Command="{Binding WrongCommand}" IsEnabled="{Binding Enabled}" BackgroundColor="{Binding W3Color}"/>
+        </StackLayout>
+
+        <Button Text="Next ->" Command="{Binding NextCommand}" IsVisible="{Binding Visible}"/>
+        <Button x:Name="test" Text="QUIT" Command="{Binding QuitCommand}"/>
+        <Label Text="{Binding Dialog}" TextColor="{Binding DialogColor}"/>
+    </VerticalStackLayout>
 
 </ContentPage>

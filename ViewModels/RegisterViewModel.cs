@@ -140,8 +140,7 @@ namespace TriviaAppClean.ViewModels
         {
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             Match match = regex.Match(Email);
-            if (match.Success)
-                ShowEmailError = true;
+           ShowEmailError = !match.Success;
         }
         #endregion
         
