@@ -16,7 +16,16 @@ namespace TriviaAppClean.ViewModels
             private ProfileView profileView;
             private TriviaWebAPIProxy service;
             private User u;
-            public GameViewModel(TriviaWebAPIProxy service, ProfileView profileView)
+        public User CurrentUser
+        {
+            get => u;
+            set
+            {
+                u = value;
+                OnPropertyChanged("CurrentUser");
+            }
+        }
+        public GameViewModel(TriviaWebAPIProxy service, ProfileView profileView)
             {
                 this.u = ((App)Application.Current).LoggedInUser;
                 this.service = service;
@@ -68,9 +77,10 @@ namespace TriviaAppClean.ViewModels
                 set
                 {
                     correctAnswer = value;
-                    OnPropertyChanged("CorrectAnswer");
-                }
+                OnPropertyChanged("CorrectAnswer");
+
             }
+        }
             #endregion
 
             #region תשובה לא נכונה 1
@@ -203,9 +213,10 @@ namespace TriviaAppClean.ViewModels
             }
             public Command SaveQuestionCommand { protected set; get; }
             public Command CorrectCommand { protected set; get; }
-            public void IfCorrect()
+            public async void IfCorrect()
             {
-                u.Score += 100;
+                CurrentUser.Score += 100;
+                await service.UpdateUser(CurrentUser); 
                 Dialog = "Correct Answer!";
                 DialogColor = Colors.Green;
                 CorrectColor = Colors.Green;
@@ -247,6 +258,7 @@ namespace TriviaAppClean.ViewModels
             public async void IfQuit()
             {
                 await Application.Current.MainPage.Navigation.PushAsync(profileView);
+                
             }
         }
 }

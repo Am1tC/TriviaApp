@@ -3,30 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaAppClean.Views.GameView"
              Title="GameView">
-    <!--<ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="EnterButton" TargetType="Button">
-                <Setter Property="BackgroundColor"  Value="Green"/>
-                <Setter Property="TextColor" Value="White"/>
-                <Setter Property="FontAttributes" Value="Italic"/>
-                <Setter Property="CornerRadius" Value="15"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
-    <Button
-            Style="{StaticResource EnterButton}"
-            Text="Start Game !"
-            Command="{Binding StartGameCommand}"
-            HorizontalOptions="CenterAndExpand"
-            VerticalOptions="CenterAndExpand"
-            HeightRequest="200"
-            WidthRequest="200"
-            FontSize="Large"/>
-
-
-</ContentPage>-->
-
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="dStyle" TargetType="Label">
@@ -38,7 +14,7 @@
             <Style x:Key="bStyle" TargetType="Button">
                 <Setter Property="FontSize" Value="15" />
                 <Setter Property="FontAttributes" Value="Italic" />
-                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="TextColor" Value="White" />
                 <Setter Property="BackgroundColor" Value="White"/>
             </Style>
         </ResourceDictionary>
@@ -48,15 +24,21 @@
         <Label Text="{Binding QuestionContent}" FontSize="Subtitle" FontAttributes="Bold"/>
 
         <StackLayout Orientation="Vertical" x:Name="stackLayout">
+            <Label></Label>
             <Button Text="{Binding CorrectAnswer}" Command="{Binding CorrectCommand}" IsEnabled="{Binding Enabled}" BackgroundColor="{Binding CorrectColor}"/>
+            <Label></Label>
             <Button Text="{Binding WrongAnswer1}" Command="{Binding WrongCommand}" IsEnabled="{Binding Enabled}" BackgroundColor="{Binding W1Color}"/>
+            <Label></Label>
             <Button Text="{Binding WrongAnswer2}" Command="{Binding WrongCommand}" IsEnabled="{Binding Enabled}" BackgroundColor="{Binding W2Color}"/>
+            <Label></Label>
             <Button Text="{Binding WrongAnswer3}" Command="{Binding WrongCommand}" IsEnabled="{Binding Enabled}" BackgroundColor="{Binding W3Color}"/>
+            <Label></Label>
         </StackLayout>
 
         <Button Text="Next ->" Command="{Binding NextCommand}" IsVisible="{Binding Visible}"/>
+
+        <Label Text="{Binding Dialog}" TextColor="{Binding DialogColor}" Style="{StaticResource dStyle}"></Label>
         <Button x:Name="test" Text="QUIT" Command="{Binding QuitCommand}"/>
-        <Label Text="{Binding Dialog}" TextColor="{Binding DialogColor}"/>
     </VerticalStackLayout>
 
 </ContentPage>

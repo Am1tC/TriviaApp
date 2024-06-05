@@ -42,6 +42,8 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
+        
+        
 
         private void OnSearchTextChanged()
         {
@@ -75,11 +77,13 @@ namespace TriviaAppClean.ViewModels
 
         private async void ReadUsersFromServer()
         {
-            
+            await Shell.Current.GoToAsync("connectingToServer");
             List<User> list = await triviaService.GetAllUsers();
+            list = list.OrderByDescending(u => u.Score).ToList();
             this.allUsers = list;
             this.Users = new ObservableCollection<User>(list);
-            
+            await Shell.Current.Navigation.PopModalAsync();
+
         }
 
         private void ReadUsers()

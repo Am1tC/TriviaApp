@@ -30,10 +30,10 @@
             Title="Add Question"
             ContentTemplate="{DataTemplate views:AddQuestionView}"
             Route="AddQuestion"/>
-        <ShellContent
+        <!--<ShellContent
             Title="Check Question"
             ContentTemplate="{DataTemplate views:CheckPendingQuestionView}"
-            Route="CheckQuestion"/>
+            Route="CheckQuestion"/>-->
     </FlyoutItem>
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="ManagerTabs" IsVisible="True">
         <ShellContent

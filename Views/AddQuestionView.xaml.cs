@@ -1,9 +1,12 @@
 namespace TriviaAppClean.Views;
+using TriviaAppClean.ViewModels;
+
 
 public partial class AddQuestionView : ContentPage
 {
-	public AddQuestionView()
-	{
-		InitializeComponent();
-	}
+    public AddQuestionView(AddQuestionViewModel vm)
+    {
+        this.BindingContext = vm;
+        InitializeComponent();
+    }
 }

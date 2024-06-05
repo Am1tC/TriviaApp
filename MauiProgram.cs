@@ -42,7 +42,6 @@ public static class MauiProgram
         builder.Services.AddTransient<UserListView>();
         builder.Services.AddTransient<UsersDetailsView>();
 
-
         builder.Services.AddSingleton<GameView>();
 
         return builder;
