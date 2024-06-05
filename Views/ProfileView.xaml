@@ -3,52 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaAppClean.Views.ProfileView"
              Title="ProfileView">
+    <ScrollView>
+        <VerticalStackLayout>
 
-    <VerticalStackLayout>
-
-        <Label Text="Rank: " FontSize="Medium" FontAttributes="Bold"></Label>
-        <Label x:Name="uRank" Text="{Binding Rank}" FontSize="Medium" FontAttributes="Bold">
-            </Label>
+        <Label Text="Rank: " FontSize="Medium" FontAttributes="Bold" TextColor="BurlyWood"></Label>
+        <Label x:Name="uRank" Text="{Binding Rank}" FontSize="Medium" FontAttributes="Bold" TextColor="BlueViolet"></Label>
 
         <Label></Label>
 
-        <Label Text="Email: " FontSize="Medium" FontAttributes="Bold"></Label><Entry x:Name="uMail" Text="{Binding Email}" IsEnabled="{Binding EmailEdit}">
+        <Label Text="Score: " FontSize="Medium" FontAttributes="Bold" TextColor="BurlyWood"></Label>
+        <Label x:Name="uScore" Text="{Binding Score}" FontSize="Medium" FontAttributes="Bold" TextColor="BlueViolet"></Label>
 
-        </Entry>
-        <Label Text="{Binding EmailError}"  IsVisible="{Binding ShowEmailError}" Style="{StaticResource labelErrorStyle}"></Label>
-        <Button Text="Edit Email" FontSize="Medium" FontAttributes="Bold" Command="{Binding EmailSwitchCommand}">
-            
-        </Button>
+        <Label></Label>
+        
+        <Label Text="Email: " FontSize="Medium" FontAttributes="Bold" TextColor="BurlyWood"></Label>
+        <Entry x:Name="uMail" Text="{Binding Email}" IsEnabled="{Binding EmailEdit}" FontSize="Medium" FontAttributes="Bold" TextColor="BlueViolet"></Entry>
+        <Label Text="{Binding EmailError}"  IsVisible="{Binding ShowEmailError}" Style="{StaticResource labelErrorStyle}" TextColor="Red" FontAttributes="Italic" FontSize="Small"></Label>
+        <Button Text="Edit Email" FontSize="Medium" FontAttributes="Bold" Command="{Binding EmailSwitchCommand}" TextColor="DarkTurquoise" BackgroundColor="DarkMagenta"></Button>
 
-        <Label Text="Name: " FontSize="Medium" FontAttributes="Bold"></Label><Entry x:Name="uName" Text="{Binding Name}" IsEnabled="{Binding NameEdit}">
+        <Label></Label>
 
-        </Entry>
-        <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" Style="{StaticResource labelErrorStyle}"></Label>
-        <Button Text="Edit Name" Command="{Binding NameSwitchCommand}">
+        <Label Text="Name: " FontSize="Medium" FontAttributes="Bold" TextColor="BurlyWood"></Label>
+        <Entry x:Name="uName" Text="{Binding Name}" IsEnabled="{Binding NameEdit}" FontSize="Medium" FontAttributes="Bold" TextColor="BlueViolet"></Entry>
+        <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" Style="{StaticResource labelErrorStyle}" TextColor="Red" FontAttributes="Italic" FontSize="Small"></Label>
+        <Button Text="Edit Name" Command="{Binding NameSwitchCommand}" FontSize="Medium" FontAttributes="Bold" TextColor="DarkTurquoise"  BackgroundColor="DarkMagenta"></Button>
 
-        </Button>
-        <Label Text="Password: " FontSize="Medium" FontAttributes="Bold"></Label><Entry x:Name="uPass" Text="{Binding Pass}" IsEnabled="{Binding PasswordEdit}">
+        <Label></Label>
 
-        </Entry>
-        <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" Style="{StaticResource labelErrorStyle}"></Label>
-        <Button Text="Edit Password"  Command="{Binding PasswordSwitchCommand}">
+        <Label Text="Password: " FontSize="Medium" FontAttributes="Bold" TextColor="BurlyWood"></Label>
+        <Entry x:Name="uPass" Text="{Binding Pass}" IsEnabled="{Binding PasswordEdit}" FontSize="Medium" FontAttributes="Bold" TextColor="BlueViolet"></Entry>
+        <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" Style="{StaticResource labelErrorStyle}" TextColor="Red" FontAttributes="Italic" FontSize="Small"></Label>
+        <Button Text="Edit Password"  Command="{Binding PasswordSwitchCommand}" FontSize="Medium" FontAttributes="Bold" TextColor="DarkTurquoise"  BackgroundColor="DarkMagenta"></Button>
 
-        </Button>
-        <Label Text="Score: " FontSize="Medium" FontAttributes="Bold"></Label>
-        <Label x:Name="uScore" Text="{Binding Score}">
-
-        </Label>
+        <Label></Label>
         <!--<Label Text="Questions Added:" Text="{Binding }>
             
         </Label>
         <Label x:Name="Questions Added" Text="{Binding }>
         </Label>-->
-        <Button Text="Update" Command="{Binding UpdateCommand}">
-            
-        </Button>
+            <Button Text="Update" Command="{Binding UpdateCommand}" FontSize="Medium" FontAttributes="Bold" TextColor="Gold" Background="DarkMagenta"></Button>
         <!--<Label Text="{Binding UpdateMsg}" IsVisible="{Binding ShowMsg}">
             
         </Label>-->
+        <Label FontSize="Title" Text="Questions added by user: " FontAttributes="Bold" TextDecorations="Underline" TextColor="DarkTurquoise"></Label>
         <CollectionView ItemsSource="{Binding Qs}" ItemsLayout="VerticalGrid, 1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -62,31 +59,32 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"
                            Text="{Binding QText}" 
-                           FontAttributes="Bold"/>
-                        <Label Grid.Column="0" Grid.Row="1"
+                           FontAttributes="Bold"
+                           TextColor="BurlyWood"/>
+                        <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"
                            Text="{Binding CorrectAnswer}" 
-                           FontAttributes="Bold" HorizontalOptions="Center"/>
-                        <Label Grid.Column="1" Grid.Row="1"
-                           Text="{Binding Bad1}" 
-                           FontAttributes="Italic"/>
+                           FontAttributes="Bold" HorizontalOptions="Center"
+                            TextColor="ForestGreen"   />
                         <Label Grid.Column="0" Grid.Row="2"
-                           Text="{Binding Bad2}" 
-                           FontAttributes="None" 
-                           HorizontalOptions="Center"/>
+                           Text="{Binding Bad1}" 
+                           FontAttributes="Italic" HorizontalOptions="Center" TextColor="Red"/>
                         <Label Grid.Column="1" Grid.Row="2"
+                           Text="{Binding Bad2}" 
+                           FontAttributes="Italic" HorizontalOptions="Center" TextColor="Red"/>
+                        <Label Grid.Column="2" Grid.Row="2"
                             Text="{Binding Bad3}" 
-                             FontAttributes="None" 
-                             HorizontalOptions="Center"/>
-                        <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"
+                             FontAttributes="Italic" HorizontalOptions="Center" TextColor="Red"/>
+                        <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"
                             Text="{Binding Status}" 
-                             FontAttributes="None" 
-                             HorizontalOptions="Center"/>
+                             FontAttributes="Bold" HorizontalOptions="Center" TextColor="CadetBlue"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
