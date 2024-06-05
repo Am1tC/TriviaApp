@@ -3,37 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaAppClean.Views.ProfileView"
              Title="ProfileView">
-    
+
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
 
-        <Label Text="Rank: "></Label>
-        <Label x:Name="uRank" Text="{Binding Rank}">
+        <Label Text="Rank: " FontSize="Medium" FontAttributes="Bold"></Label>
+        <Label x:Name="uRank" Text="{Binding Rank}" FontSize="Medium" FontAttributes="Bold">
+            </Label>
 
-        </Label>
-        <Label Text="Email: "></Label><Entry x:Name="uMail" Text="{Binding Email}" IsEnabled="{Binding EmailEdit}">
+        <Label></Label>
+
+        <Label Text="Email: " FontSize="Medium" FontAttributes="Bold"></Label><Entry x:Name="uMail" Text="{Binding Email}" IsEnabled="{Binding EmailEdit}">
 
         </Entry>
-        <Button Text="Edit Email" Command="{Binding EmailSwitchCommand}">
+        <Button Text="Edit Email" FontSize="Medium" FontAttributes="Bold" Command="{Binding EmailSwitchCommand}">
             
         </Button>
 
-        <Label Text="Name: "></Label><Entry x:Name="uName" Text="{Binding Name}" IsEnabled="{Binding NameEdit}">
+        <Label Text="Name: " FontSize="Medium" FontAttributes="Bold"></Label><Entry x:Name="uName" Text="{Binding Name}" IsEnabled="{Binding NameEdit}">
 
         </Entry>
         <Button Text="Edit Name" Command="{Binding NameSwitchCommand}">
 
         </Button>
-        <Label Text="Password: "></Label><Entry x:Name="uPass" Text="{Binding Pass}" IsEnabled="{Binding PasswordEdit}">
+        <Label Text="Password: " FontSize="Medium" FontAttributes="Bold"></Label><Entry x:Name="uPass" Text="{Binding Pass}" IsEnabled="{Binding PasswordEdit}">
 
         </Entry>
         <Button Text="Edit Password"  Command="{Binding PasswordSwitchCommand}">
 
         </Button>
-        <Label Text="Score: "></Label>
+        <Label Text="Score: " FontSize="Medium" FontAttributes="Bold"></Label>
         <Label x:Name="uScore" Text="{Binding Score}">
 
         </Label>

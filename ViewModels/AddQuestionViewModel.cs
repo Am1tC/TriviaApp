@@ -165,6 +165,28 @@ namespace TriviaAppClean.ViewModels
 
         public ICommand AddQuestionCommand { get; set; }
 
+        private bool inServerCall;
+        public bool InServerCall
+        {
+            get
+            {
+                return this.inServerCall;
+            }
+            set
+            {
+                this.inServerCall = value;
+                OnPropertyChanged("NotInServerCall");
+                OnPropertyChanged("InServerCall");
+            }
+        }
+        public bool NotInServerCall
+        {
+            get
+            {
+                return !this.InServerCall;
+            }
+        }
+
         private async void OnAddQuestion()
         {
             AmericanQuestion quest = new AmericanQuestion();
@@ -175,9 +197,9 @@ namespace TriviaAppClean.ViewModels
             quest.Bad3 = wrongAnswer3;
             quest.UserId = ((App)Application.Current).LoggedInUser.Id;
             quest.Status = 0;
-            await Shell.Current.Navigation.PushModalAsync(connectingToServerView);
+            InServerCall = true;
             bool a = await this.triviaService.PostNewQuestion(quest);
-            await Shell.Current.Navigation.PopModalAsync();
+            InServerCall = false;
 
             if (a == true)
             {

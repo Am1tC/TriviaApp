@@ -61,7 +61,7 @@
                 Style="{StaticResource EnterButton}"
                 IsEnabled="{Binding IsAddingEnabled}"
                 Command="{Binding AddQuestionCommand}"/>
-
+        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Gray" IsVisible="{Binding InServerCall}"></ActivityIndicator>
     </VerticalStackLayout>
 
 
