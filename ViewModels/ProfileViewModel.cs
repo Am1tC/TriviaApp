@@ -14,56 +14,6 @@ namespace TriviaAppClean.ViewModels
     public class ProfileViewModel : ViewModelBase
     {
 
-        #region EnableEdit
-        private bool nameEdit;
-        private bool emailEdit;
-        private bool passwordEdit;
-
-        public bool NameEdit
-        {
-            get { return nameEdit; }
-            set
-            {
-                nameEdit = value;
-                OnPropertyChanged("NameEdit");
-            }
-        }
-
-        public bool EmailEdit
-        {
-            get { return emailEdit; }
-            set
-            {
-                emailEdit = value;
-                OnPropertyChanged("EmailEdit");
-            }
-        }
-
-        public bool PasswordEdit
-        {
-            get { return passwordEdit; }
-            set
-            {
-                passwordEdit = value;
-                OnPropertyChanged("PasswordEdit");
-            }
-        }
-
-        private void editName()
-        {
-            NameEdit = !NameEdit;
-        }
-        private void editPassword()
-        {
-            PasswordEdit = !PasswordEdit;
-        }
-        private void editEmail()
-        {
-            EmailEdit = !EmailEdit;
-        }
-
-        #endregion
-
         #region declareAttributesAndProperties
         private int id;
         private string email;
@@ -181,7 +131,7 @@ namespace TriviaAppClean.ViewModels
 
         private void ValidatePassword()
         {
-            this.ShowPasswordError = string.IsNullOrEmpty(pass);
+            this.ShowPasswordError = string.IsNullOrEmpty(Pass) ||  Pass.Length<8;
         }
         #endregion
 
@@ -232,11 +182,10 @@ namespace TriviaAppClean.ViewModels
             Match match = regex.Match(email);
             this.ShowEmailError = !match.Success;
         }
-        #endregion
 
         #endregion
+        #endregion
 
-        
         #region Commands
         public Command UpdateCommand { get; set; }
         public Command NameSwitchCommand { get; set; }
@@ -255,11 +204,13 @@ namespace TriviaAppClean.ViewModels
             Email = this.u.Email;
             this.Qs = new ObservableCollection<AmericanQuestion>(u.Questions);
 
+            NameError = "Must have a name";
+            PasswordError = "The password must include at least 8 digits and with at least 1 letter";
+            EmailError = "The email format is incorrect";
 
             this.service = service;
 
             this.UpdateCommand = new Command(Update);
-
             NameSwitchCommand = new Command(editName);
             EmailSwitchCommand = new Command(editEmail);
             PasswordSwitchCommand = new Command(editPassword);
@@ -301,10 +252,56 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
+        #region EnableEdit
+        private bool nameEdit;
+        private bool emailEdit;
+        private bool passwordEdit;
 
-        
-        
-        
+        public bool NameEdit
+        {
+            get { return nameEdit; }
+            set
+            {
+                nameEdit = value;
+                OnPropertyChanged("NameEdit");
+            }
+        }
+
+        public bool EmailEdit
+        {
+            get { return emailEdit; }
+            set
+            {
+                emailEdit = value;
+                OnPropertyChanged("EmailEdit");
+            }
+        }
+
+        public bool PasswordEdit
+        {
+            get { return passwordEdit; }
+            set
+            {
+                passwordEdit = value;
+                OnPropertyChanged("PasswordEdit");
+            }
+        }
+
+        private void editName()
+        {
+            NameEdit = !NameEdit;
+        }
+        private void editPassword()
+        {
+            PasswordEdit = !PasswordEdit;
+        }
+        private void editEmail()
+        {
+            EmailEdit = !EmailEdit;
+        }
+
+        #endregion
+
 
 
 

@@ -15,6 +15,7 @@
         <Label Text="Email: " FontSize="Medium" FontAttributes="Bold"></Label><Entry x:Name="uMail" Text="{Binding Email}" IsEnabled="{Binding EmailEdit}">
 
         </Entry>
+        <Label Text="{Binding EmailError}"  IsVisible="{Binding ShowEmailError}" Style="{StaticResource labelErrorStyle}"></Label>
         <Button Text="Edit Email" FontSize="Medium" FontAttributes="Bold" Command="{Binding EmailSwitchCommand}">
             
         </Button>
@@ -22,12 +23,14 @@
         <Label Text="Name: " FontSize="Medium" FontAttributes="Bold"></Label><Entry x:Name="uName" Text="{Binding Name}" IsEnabled="{Binding NameEdit}">
 
         </Entry>
+        <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" Style="{StaticResource labelErrorStyle}"></Label>
         <Button Text="Edit Name" Command="{Binding NameSwitchCommand}">
 
         </Button>
         <Label Text="Password: " FontSize="Medium" FontAttributes="Bold"></Label><Entry x:Name="uPass" Text="{Binding Pass}" IsEnabled="{Binding PasswordEdit}">
 
         </Entry>
+        <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" Style="{StaticResource labelErrorStyle}"></Label>
         <Button Text="Edit Password"  Command="{Binding PasswordSwitchCommand}">
 
         </Button>
