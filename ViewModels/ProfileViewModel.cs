@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,15 +7,45 @@ using TriviaAppClean.Models;
 using System.Text.RegularExpressions;
 using TriviaAppClean.Services;
 using System.Collections.ObjectModel;
+using System.Diagnostics.Tracing;
 
 namespace TriviaAppClean.ViewModels
 {
     public class ProfileViewModel : ViewModelBase
     {
-        private bool nameEdit;
-        private bool emailEdit;
-        private bool passwordEdit;
+        private bool nameEdit = false;
+        private bool emailEdit = false;
+        private bool passwordEdit = false;
 
+        public bool NameEdit
+        {
+            get { return nameEdit; }
+            set
+            {
+                nameEdit = value;
+                OnPropertyChanged("NameEdit");
+            }
+        }
+
+        public bool EmailEdit
+        {
+            get { return emailEdit; }
+            set
+            {
+                emailEdit = value;
+                OnPropertyChanged("EmailEdit");
+            }
+        }
+
+        public bool PasswordEdit
+        {
+            get { return passwordEdit; }
+            set
+            {
+                passwordEdit = value;
+                OnPropertyChanged("PasswordEdit");
+            }
+        }
 
         private int id;
         private string email;
@@ -25,7 +55,6 @@ namespace TriviaAppClean.ViewModels
         private int rank;
         private User u;
         private TriviaWebAPIProxy service;
-        private string updateMsg;
 
         public int Id
         {
@@ -42,6 +71,14 @@ namespace TriviaAppClean.ViewModels
         {
             get { return rank; }
             set { rank = value; }
+        }
+
+       
+
+        public User CurrentUser
+        {
+            get { return u; }
+            set { CurrentUser = value; }
         }
 
         #region Name
@@ -147,7 +184,10 @@ namespace TriviaAppClean.ViewModels
 
         public string Email
         {
-            get => email;
+            get
+            {
+                return email;
+            }
             set
             {
                 email = value;
@@ -185,6 +225,7 @@ namespace TriviaAppClean.ViewModels
             this.pass = this.u.Password;
             Score = this.u.Score;
             Rank = this.u.Rank;
+            Email = this.u.Email;
             this.Qs = new ObservableCollection<AmericanQuestion>(u.Questions);
 
 
@@ -196,7 +237,6 @@ namespace TriviaAppClean.ViewModels
             EmailSwitchCommand = new Command(editEmail);
             PasswordSwitchCommand = new Command(editPassword);
 
-            updateMsg = "";
             nameEdit = false;
             passwordEdit = false;
             emailEdit = false;
@@ -215,38 +255,45 @@ namespace TriviaAppClean.ViewModels
 
             if (!ShowNameError && !showEmailError && !showPasswordError)
             {
-                u.Email = Email;
-                u.Password = this.Pass;
-                u.Name = this.Name;
+                CurrentUser.Email = Email;
+                CurrentUser.Password = this.Pass;
+                CurrentUser.Name = this.Name;
 
                 bool isUpdated;
-                isUpdated = await service.UpdateUser(u);
+                isUpdated = await service.UpdateUser(CurrentUser);
                 if (isUpdated)
                 {
-                    updateMsg = "Updated Successfully!";
+
+                    await Application.Current.MainPage.DisplayAlert("Succes!","Updated your information to be as follows","Close");
+                   ((App)Application.Current).LoggedInUser = CurrentUser;
                 }
                 else
                 {
-                    updateMsg = "Failed to update";
+                    await Application.Current.MainPage.DisplayAlert("Failed to update", "Error, try again, and if repeats several times, check your information", "Close");
                 }
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Failed to update", "Invalid input", "Close");
             }
         }
 
+
         private void editName()
         {
-            nameEdit = !nameEdit;
+            NameEdit = !NameEdit;
         }
         private void editPassword()
         {
-            passwordEdit = !passwordEdit;
+            PasswordEdit = !PasswordEdit;
         }
         private void editEmail()
         {
-            emailEdit = !emailEdit;
+            EmailEdit = !EmailEdit;
         }
 
-
-
+        
+        
 
 
 
@@ -264,13 +311,6 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged();
             }
         }
-
-
-
-
-
-
-
 
 
         #endregion
