@@ -50,6 +50,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\game_icon.png" />
 	  <None Remove="Resources\Images\list_icon.png" />
+	  <None Remove="Resources\Images\logout_icon.png" />
 	  <None Remove="Resources\Images\plus.png" />
 	  <None Remove="Resources\Images\profile_icon.png" />
 	  <None Remove="Resources\Images\trophy.png" />

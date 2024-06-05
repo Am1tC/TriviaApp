@@ -39,4 +39,12 @@
             ContentTemplate="{DataTemplate views:ShowQuestionView}"
             Route="AllQuestions"/>-->
     </FlyoutItem>
+    <MenuItem
+        
+        Command="{Binding LogoutCommand}"
+        IconImageSource="logout_icon.png"
+        StyleClass=""
+        Text="Log out" /> 
+     <!--the signup doesnt work after logout-->
+    
 </Shell>

@@ -41,7 +41,7 @@ public static class MauiProgram
         builder.Services.AddTransient<ShowQuestionView>();
         builder.Services.AddTransient<UserListView>();
         builder.Services.AddTransient<UsersDetailsView>();
-
+        builder.Services.AddTransient<ShellViewModel>();
         builder.Services.AddSingleton<GameView>();
 
         return builder;

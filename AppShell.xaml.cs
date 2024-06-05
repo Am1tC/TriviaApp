@@ -1,13 +1,16 @@
 ﻿using TriviaAppClean.Views;
-
+using System.Windows.Input;
+using System;
+using TriviaAppClean.ViewModels;
 namespace TriviaAppClean;
 
 public partial class AppShell : Shell
 {
-	public AppShell()
+	public AppShell(ShellViewModel vm)
 	{
 		InitializeComponent();
-		RegisterRoutes();
+        this.BindingContext = vm;
+        RegisterRoutes();
 	}
 
 	private void RegisterRoutes()
@@ -22,5 +25,6 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("SQV", typeof(ShowQuestionView));
         Routing.RegisterRoute("ULV", typeof(UserListView));
         Routing.RegisterRoute("userDetails", typeof(UsersDetailsView));
+
     }
 }

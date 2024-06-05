@@ -141,6 +141,8 @@ namespace TriviaAppClean.ViewModels
             else
             {
                 await Application.Current.MainPage.DisplayAlert("Success :)", $"Login Succeed! for {u.Name} with {u.Questions.Count} Questions", "ok");
+                Password = "";
+                Email = "";
                 Application.Current.MainPage = shell;
             }
         }
