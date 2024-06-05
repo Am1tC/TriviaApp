@@ -10,27 +10,30 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
+        <Label Text="Rank: "></Label>
         <Label x:Name="uRank" Text="{Binding Rank}">
 
         </Label>
-        <Entry x:Name="uMail" Text="{Binding Email}" IsEnabled="{Binding emailEdit}">
+        <Label Text="Email: "></Label><Entry x:Name="uMail" Text="{Binding Email}" IsEnabled="{Binding EmailEdit}">
 
         </Entry>
         <Button Text="Edit Email" Command="{Binding EmailSwitchCommand}">
             
         </Button>
-        <Entry x:Name="uName" Text="{Binding Name}" IsEnabled="{Binding nameEdit}">
+
+        <Label Text="Name: "></Label><Entry x:Name="uName" Text="{Binding Name}" IsEnabled="{Binding NameEdit}">
 
         </Entry>
         <Button Text="Edit Name" Command="{Binding NameSwitchCommand}">
 
         </Button>
-        <Entry x:Name="uPass" Text="{Binding Pass} " IsEnabled="{Binding passwordEdit}">
+        <Label Text="Password: "></Label><Entry x:Name="uPass" Text="{Binding Pass}" IsEnabled="{Binding PasswordEdit}">
 
         </Entry>
         <Button Text="Edit Password"  Command="{Binding PasswordSwitchCommand}">
 
         </Button>
+        <Label Text="Score: "></Label>
         <Label x:Name="uScore" Text="{Binding Score}">
 
         </Label>
@@ -42,9 +45,9 @@
         <Button Text="Update" Command="{Binding UpdateCommand}">
             
         </Button>
-        <Label Text="{Binding updateMsg}">
+        <!--<Label Text="{Binding UpdateMsg}" IsVisible="{Binding ShowMsg}">
             
-        </Label>
+        </Label>-->
         <CollectionView ItemsSource="{Binding Qs}" ItemsLayout="VerticalGrid, 1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
