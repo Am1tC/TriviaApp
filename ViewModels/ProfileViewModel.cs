@@ -13,9 +13,11 @@ namespace TriviaAppClean.ViewModels
 {
     public class ProfileViewModel : ViewModelBase
     {
-        private bool nameEdit = false;
-        private bool emailEdit = false;
-        private bool passwordEdit = false;
+
+        #region EnableEdit
+        private bool nameEdit;
+        private bool emailEdit;
+        private bool passwordEdit;
 
         public bool NameEdit
         {
@@ -47,6 +49,22 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
+        private void editName()
+        {
+            NameEdit = !NameEdit;
+        }
+        private void editPassword()
+        {
+            PasswordEdit = !PasswordEdit;
+        }
+        private void editEmail()
+        {
+            EmailEdit = !EmailEdit;
+        }
+
+        #endregion
+
+        #region declareAttributesAndProperties
         private int id;
         private string email;
         private string name;
@@ -82,18 +100,6 @@ namespace TriviaAppClean.ViewModels
         }
 
         #region Name
-        private bool showNameError;
-
-        public bool ShowNameError
-        {
-            get => showNameError;
-            set
-            {
-                showNameError = value;
-                OnPropertyChanged("ShowNameError");
-            }
-        }
-
 
         public string Name
         {
@@ -103,6 +109,18 @@ namespace TriviaAppClean.ViewModels
                 name = value;
                 ValidateName();
                 OnPropertyChanged("Name");
+            }
+        }
+
+        private bool showNameError;
+
+        public bool ShowNameError
+        {
+            get => showNameError;
+            set
+            {
+                showNameError = value;
+                OnPropertyChanged("ShowNameError");
             }
         }
 
@@ -125,18 +143,6 @@ namespace TriviaAppClean.ViewModels
         #endregion
 
         #region password
-        private bool showPasswordError;
-
-        public bool ShowPasswordError
-        {
-            get => showPasswordError;
-            set
-            {
-                showPasswordError = value;
-                OnPropertyChanged("ShowPasswordError");
-            }
-        }
-
 
         public string Pass
         {
@@ -146,6 +152,18 @@ namespace TriviaAppClean.ViewModels
                 pass = value;
                 ValidatePassword();
                 OnPropertyChanged("Password");
+            }
+        }
+
+        private bool showPasswordError;
+
+        public bool ShowPasswordError
+        {
+            get => showPasswordError;
+            set
+            {
+                showPasswordError = value;
+                OnPropertyChanged("ShowPasswordError");
             }
         }
 
@@ -169,19 +187,6 @@ namespace TriviaAppClean.ViewModels
 
 
         #region email
-        private bool showEmailError;
-
-        public bool ShowEmailError
-        {
-            get => showEmailError;
-            set
-            {
-                showEmailError = value;
-                OnPropertyChanged("ShowEmailError");
-            }
-        }
-
-
         public string Email
         {
             get
@@ -193,6 +198,18 @@ namespace TriviaAppClean.ViewModels
                 email = value;
                 ValidateEmail();
                 OnPropertyChanged("Email");
+            }
+        }
+
+        private bool showEmailError;
+
+        public bool ShowEmailError
+        {
+            get => showEmailError;
+            set
+            {
+                showEmailError = value;
+                OnPropertyChanged("ShowEmailError");
             }
         }
 
@@ -215,6 +232,16 @@ namespace TriviaAppClean.ViewModels
             Match match = regex.Match(email);
             this.ShowEmailError = !match.Success;
         }
+        #endregion
+
+        #endregion
+
+        
+        #region Commands
+        public Command UpdateCommand { get; set; }
+        public Command NameSwitchCommand { get; set; }
+        public Command EmailSwitchCommand { get; set; }
+        public Command PasswordSwitchCommand { get; set; }
         #endregion
 
         public ProfileViewModel(TriviaWebAPIProxy service)
@@ -242,10 +269,6 @@ namespace TriviaAppClean.ViewModels
             emailEdit = false;
 
         }
-        public Command UpdateCommand { get; set; }
-        public Command NameSwitchCommand { get; set; }
-        public Command EmailSwitchCommand { get; set; }
-        public Command PasswordSwitchCommand { get; set; }
 
         private async void Update()
         {
@@ -279,19 +302,7 @@ namespace TriviaAppClean.ViewModels
         }
 
 
-        private void editName()
-        {
-            NameEdit = !NameEdit;
-        }
-        private void editPassword()
-        {
-            PasswordEdit = !PasswordEdit;
-        }
-        private void editEmail()
-        {
-            EmailEdit = !EmailEdit;
-        }
-
+        
         
         
 
