@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using TriviaAppClean.Models;
 using TriviaAppClean.Services;
 
-namespace TriviaAppClean.ViewModels
+namespace TriviaAppClean.ViewModels //עמוד שלא צריך לעבוד עליו
 {
     public class ShowQuestionViewModel : ViewModelBase
     {

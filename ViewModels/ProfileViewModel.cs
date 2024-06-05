@@ -44,9 +44,6 @@ namespace TriviaAppClean.ViewModels
             set { rank = value; }
         }
 
-
-
-
         #region Name
         private bool showNameError;
 

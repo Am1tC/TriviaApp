@@ -9,7 +9,7 @@
            FontAttributes="Bold"
             FontSize="Large"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="CenterAndExpand" />
         <Grid Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -29,7 +29,8 @@
            Text="Name"
            FontAttributes="Bold"/>
         </Grid>
-        <CollectionView ItemsSource="{Binding Users}"
+        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Gray" IsVisible="{Binding InServerCall}"></ActivityIndicator>
+        <CollectionView ItemsSource="{Binding Users}" HeightRequest="800"
                 ItemsLayout="VerticalList"
                 SelectedItem="{Binding SelectedUser}"
                 SelectionMode="Single" SelectionChangedCommand="{Binding SingleSelectCommand}">
@@ -47,7 +48,7 @@
                         <Label Grid.Column="0" Grid.Row="0"
                                Text="{Binding Id}"
                                FontAttributes="Bold"/>
-                        <Label Grid.Column="1" Grid.Row="0"
+                        <Label Grid.Column="1" Grid.Row="0" HorizontalOptions="Fill"
                                Text="{Binding Email}"/>
                         <Label Grid.Column="2" Grid.Row="0"
                                Text="{Binding Name}"

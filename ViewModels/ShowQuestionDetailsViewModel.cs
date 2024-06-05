@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TriviaAppClean.ViewModels
 {
-    public class ShowQuestionDetailsViewModel: ViewModelBase
+    public class ShowQuestionDetailsViewModel: ViewModelBase //עמוד שלא צריך לעבוד עליו
     {
         private string correctAns;
         private string wrongAns1;

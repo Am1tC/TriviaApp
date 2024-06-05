@@ -5,29 +5,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:TriviaAppClean.Views"
     Shell.FlyoutBehavior="Flyout">
-
-    <!--<ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:GameView}"
-        Route="LoginView" />-->
-
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="MainTabs">
         <ShellContent 
-            Title="GameStart"
+            Title="GameStart" Icon="game_icon.png"
             ContentTemplate="{DataTemplate views:GameView}"
             Route="GameStart"/>
         <ShellContent
-            Title="Records"
+            Title="Records" Icon="trophy.png"
             ContentTemplate="{DataTemplate views:RecordesView}"
             Route="Records"/>
-        <ShellContent
-            Title="My Profile"
+        <ShellContent 
+            Title="My Profile" Icon="profile_icon.png"
             ContentTemplate="{DataTemplate views:ProfileView}"
             Route="MyProfile"/>
     </FlyoutItem>
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="PermissionTabs" IsVisible="True">
         <ShellContent
-            Title="Add Question"
+            Title="Add Question" Icon="plus.png"
             ContentTemplate="{DataTemplate views:AddQuestionView}"
             Route="AddQuestion"/>
         <!--<ShellContent
@@ -37,12 +31,12 @@
     </FlyoutItem>
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="ManagerTabs" IsVisible="True">
         <ShellContent
-            Title="Users List"
+            Title="Users List" Icon="list_icon.png"
             ContentTemplate="{DataTemplate views:UserListView}"
             Route="AllUsers"/>
-        <ShellContent
-            Title="Questions List"
+        <!--<ShellContent
+            Title="Questions List" Icon="list_icon.png"
             ContentTemplate="{DataTemplate views:ShowQuestionView}"
-            Route="AllQuestions"/>
+            Route="AllQuestions"/>-->
     </FlyoutItem>
 </Shell>

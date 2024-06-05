@@ -3,12 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaAppClean.Views.RecordesView"
              Title="RecordesView">
+
     <StackLayout>
-        <Label 
-            Text="Welcome to Recordes page!"
-            VerticalOptions="Start" 
-            HorizontalOptions="Center" />
-        <SearchBar Text="{Binding SearchText}"></SearchBar>
+        <SearchBar Text="{Binding SearchText}" HorizontalOptions="CenterAndExpand"></SearchBar>
         <Grid Padding="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -18,32 +15,32 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Grid.Row="0"
+            <Label Grid.Column="0" Grid.Row="0" FontSize="Medium"
                            Text="Name:" 
                            FontAttributes="Bold"/>
-            <Label Grid.Column="1" Grid.Row="0"
+            <Label Grid.Column="1" Grid.Row="0" FontSize="Medium"
                            Text="Score:" 
                            FontAttributes="Bold" HorizontalOptions="Center"/>
         </Grid>
+        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Gray" IsVisible="{Binding InServerCall}"></ActivityIndicator>
         <ScrollView>
-        <CollectionView ItemsSource="{Binding Users}"
+        <CollectionView ItemsSource="{Binding Users}" HeightRequest="800"
             ItemsLayout="VerticalGrid, 1">
                 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            
-                        </Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0"
+                        <Label Grid.Column="0" Grid.Row="0" FontSize="Medium"
                            Text="{Binding Name}" 
                            FontAttributes="Bold"/>
-                        <Label Grid.Column="1" Grid.Row="0"
+                        <Label Grid.Column="1" Grid.Row="0" FontSize="Medium"
                            Text="{Binding Score}" 
                            FontAttributes="Bold" HorizontalOptions="Center"/>
                     </Grid>

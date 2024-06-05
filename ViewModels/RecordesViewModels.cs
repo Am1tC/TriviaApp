@@ -74,16 +74,35 @@ namespace TriviaAppClean.ViewModels
             ReadUsersFromServer();
         }
 
-
+        private bool inServerCall;
+        public bool InServerCall
+        {
+            get
+            {
+                return this.inServerCall;
+            }
+            set
+            {
+                this.inServerCall = value;
+                OnPropertyChanged("NotInServerCall");
+                OnPropertyChanged("InServerCall");
+            }
+        }
+        public bool NotInServerCall
+        {
+            get
+            {
+                return !this.InServerCall;
+            }
+        }
         private async void ReadUsersFromServer()
         {
-            await Shell.Current.GoToAsync("connectingToServer");
+            InServerCall = true;
             List<User> list = await triviaService.GetAllUsers();
             list = list.OrderByDescending(u => u.Score).ToList();
             this.allUsers = list;
             this.Users = new ObservableCollection<User>(list);
-            await Shell.Current.Navigation.PopModalAsync();
-
+            InServerCall = false;
         }
 
         private void ReadUsers()

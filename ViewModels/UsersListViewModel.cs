@@ -32,11 +32,35 @@ namespace TriviaAppClean.ViewModels
             users = new ObservableCollection<User>();
             ReadUsers();
         }
+
+        private bool inServerCall;
+        public bool InServerCall
+        {
+            get
+            {
+                return this.inServerCall;
+            }
+            set
+            {
+                this.inServerCall = value;
+                OnPropertyChanged("NotInServerCall");
+                OnPropertyChanged("InServerCall");
+            }
+        }
+        public bool NotInServerCall
+        {
+            get
+            {
+                return !this.InServerCall;
+            }
+        }
         private async void ReadUsers()
         {
+            InServerCall = true;
             TriviaWebAPIProxy service = this.usersService;
             List<User> list = await service.GetAllUsers();
             this.Users = new ObservableCollection<User>(list);
+            InServerCall = false;
         }
         private Object selectedUser;
         public Object SelectedUser
