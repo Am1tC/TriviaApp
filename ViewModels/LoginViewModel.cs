@@ -14,23 +14,32 @@ namespace TriviaAppClean.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
+        #region Construction
+
+        //declaring fields
         private TriviaWebAPIProxy triviaService;
         private RegisterView register;
         private AppShell shell;
+
+        //constructor method
         public LoginViewModel(TriviaWebAPIProxy service, RegisterView register, AppShell shell)
         {
             InServerCall = false;
             this.triviaService = service;
-            this.LoginCommand = new Command(OnLogin);
+            this.shell = shell;
+            this.register = register;
+
             this.PasswordError = "This is a required field";
             this.EmailError = "This is a required field";
-            
-            this.register = register;
-            this.TapCommand = new Command(Tap);
-            this.shell = shell;
+
+            this.LoginCommand = new Command(OnLogin);//linking LoginCommand command to its respective method
+            this.TapCommand = new Command(Tap); //linking TapCommand command to its respective method
         }
+        #endregion
 
         #region password
+
+        //field & property relating to whether an error should be shown
         private bool showPasswordError;
 
         public bool ShowPasswordError
@@ -43,6 +52,7 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
+        //field & property relating to the password itself
         private string password;
 
         public string Password
@@ -56,6 +66,7 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
+        //field & property relating to what error should be shown
         private string passwordError;
 
         public string PasswordError
@@ -68,12 +79,16 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
+        //method to check whether a password is valid according to set criteria 
         private void ValidatePassword()
         {
             this.ShowPasswordError = string.IsNullOrEmpty(Password);
         }
         #endregion
+
         #region email
+
+        //field & property relating to whether an error should be shown
         private bool showEmailError;
 
         public bool ShowEmailError
@@ -86,6 +101,7 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
+        //field & property relating to the email itself
         private string email;
 
         public string Email
@@ -99,6 +115,7 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
+        //field & property relating to what error should be shown
         private string emailError;
 
         public string EmailError
@@ -111,6 +128,7 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
+        //method to check whether an email is valid according to set criteria
         private void ValidateEmail()
         {
             string email = Email;
@@ -120,32 +138,44 @@ namespace TriviaAppClean.ViewModels
         }
         #endregion
 
-
+        #region Commands
+        //Declaring the commands
+        public Command TapCommand { get; set; }
         public ICommand LoginCommand { get; set; }
+
+        private async void Tap()
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(register);
+        }
+
         private async void OnLogin()
         {
-            //Choose the way you want to blobk the page while indicating a server call
-            InServerCall = true;
+            
+            InServerCall = true;// Indicate that a server call is in progress
             //await Shell.Current.GoToAsync("connectingToServer");
             User u = await this.triviaService.LoginAsync(this.Email, this.Password);
             //await Shell.Current.Navigation.PopModalAsync();
-            InServerCall = false;
+            InServerCall = false;// Indicate that the server call has completed
 
             //Set the application logged in user to be whatever user returned (null or real user)
             ((App)Application.Current).LoggedInUser = u;
-            if (u == null)
+            if (u == null)//if the user is null
             {
 
-                await Application.Current.MainPage.DisplayAlert("Login Faild:(", "Try again", "ok");
+                await Application.Current.MainPage.DisplayAlert("Login Faild:(", "Try again", "ok");//Display failed alert
             }
-            else
+            else//if the user isnt null
             {
-                await Application.Current.MainPage.DisplayAlert("Success :)", $"Login Succeed! for {u.Name} with {u.Questions.Count} Questions", "ok");
+                await Application.Current.MainPage.DisplayAlert("Success :)", $"Login Succeed! for {u.Name} with {u.Questions.Count} Questions", "ok");//Display success alert
                 Password = "";
                 Email = "";
                 Application.Current.MainPage = shell;
             }
         }
+        #endregion
+
+        #region ServerCall
+        //Private field to track if a server call is in progress
 
         private bool inServerCall;
         public bool InServerCall
@@ -162,17 +192,15 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
+        //Public property to get the inverse of inServerCall
         public bool NotInServerCall
         {
             get
             {
-                return !this.InServerCall;
+                return !this.InServerCall;//switching the value to be the opposite of the current
             }
         }
-        public Command TapCommand { get; set; }
-        private async void Tap()
-        {
-            await Application.Current.MainPage.Navigation.PushAsync(register);
-        }
+        #endregion
+        
     }
 }
