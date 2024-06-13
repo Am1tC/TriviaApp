@@ -52,7 +52,7 @@ namespace TriviaAppClean.ViewModels
                 WrongAnswer2 = amq.Bad2;
                 WrongAnswer3 = amq.Bad3;
             }
-            #region תוכן שאלה
+             #region questionContent
 
 
             private string questionContent;
@@ -68,8 +68,8 @@ namespace TriviaAppClean.ViewModels
             }
             #endregion
 
-            #region תשובה נכונה
-            private string correctAnswer;
+            #region CorrectAnswer
+             private string correctAnswer;
 
             public string CorrectAnswer
             {
@@ -80,10 +80,10 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged("CorrectAnswer");
 
             }
-        }
+            }
             #endregion
 
-            #region תשובה לא נכונה 1
+            #region wrongAnswer1
 
             private string wrongAnswer1;
 
@@ -99,7 +99,7 @@ namespace TriviaAppClean.ViewModels
             #endregion
 
 
-            #region תשובה לא נכונה 2
+            #region wrongAnswer2
 
             private string wrongAnswer2;
 
@@ -116,7 +116,7 @@ namespace TriviaAppClean.ViewModels
             #endregion
 
 
-            #region תשובה לא נכונה 3
+            #region wrongAnswer3
 
 
             private string wrongAnswer3;

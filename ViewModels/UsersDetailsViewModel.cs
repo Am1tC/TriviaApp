@@ -11,6 +11,7 @@ namespace TriviaAppClean.ViewModels
     [QueryProperty(nameof(SelectedUser), "selectedUser")]
     public class UsersDetailsViewModel : ViewModelBase
     {
+        // Public property to get and set the selected user, with property change notification
         private User selectedUser;
         public User SelectedUser
         {

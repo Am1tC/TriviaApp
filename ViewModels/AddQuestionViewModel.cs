@@ -13,6 +13,7 @@ namespace TriviaAppClean.ViewModels
     public class AddQuestionViewModel : ViewModelBase
     {
         private string errorComment;
+        // Public property for getting and setting error comment, with property change notification
         public string ErrorComment
         {
             get
@@ -27,6 +28,7 @@ namespace TriviaAppClean.ViewModels
         }
 
         private bool showErrorComment;
+        // Public property for getting and setting showErrorComment, with property change notification
         public bool ShowErrorComment
         {
             get
@@ -41,6 +43,7 @@ namespace TriviaAppClean.ViewModels
         }
 
         private bool isAddingEnabled;
+        // Public property for getting and setting  if is adding a question is enabled 
         public bool IsAddingEnabled
         {
             get
@@ -54,6 +57,7 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
+        // Method to check if the user is eligible to add a question
         private bool AddQuestionEligible()
         {
             if (((App)Application.Current).LoggedInUser.Rank == 2)
@@ -150,6 +154,7 @@ namespace TriviaAppClean.ViewModels
             this.triviaService = service;
             this.connectingToServerView = connect;
             this.ErrorComment = "For every 100 points you make, you can add a Q !!, unless you are a manager";
+            // Check if user is eligible to add questions and set properties accordingly
             if (AddQuestionEligible())
             {
                 this.isAddingEnabled = true;
@@ -165,7 +170,9 @@ namespace TriviaAppClean.ViewModels
 
         public ICommand AddQuestionCommand { get; set; }
 
+        // Private field to track if a server call is in progress
         private bool inServerCall;
+        // Public property for getting and setting inServerCall, with property change notification
         public bool InServerCall
         {
             get
@@ -197,13 +204,19 @@ namespace TriviaAppClean.ViewModels
             quest.Bad3 = wrongAnswer3;
             quest.UserId = ((App)Application.Current).LoggedInUser.Id;
             quest.Status = 0;
+            // Indicate that a server call is in progress
             InServerCall = true;
+            // Post the new question to the server and await the result
             bool a = await this.triviaService.PostNewQuestion(quest);
+            // Indicate that the server call has completed
             InServerCall = false;
+
 
             if (a == true)
             {
+                // Display success message
                 await Shell.Current.DisplayAlert("Add Qustion", "Question is added to the game database successfully !!", "ok");
+                // Update eligibility and error comment visibility
                 if (AddQuestionEligible())
                 {
                     this.isAddingEnabled = true;
@@ -214,6 +227,7 @@ namespace TriviaAppClean.ViewModels
                     this.isAddingEnabled = false;
                     this.ShowErrorComment = true;
                 }
+                // Clear the question and answer fields
                 this.Question = "";
                 this.RightAnswer = "";
                 this.WrongAnswer1 = "";
@@ -222,7 +236,9 @@ namespace TriviaAppClean.ViewModels
             }
             else
             {
+                // Display failure message
                 await Shell.Current.DisplayAlert("Add Qustion", "Question has failed to enter the gane database", "ok");
+                // Update eligibility and error comment visibility
                 if (AddQuestionEligible())
                 {
                     this.isAddingEnabled = true;
@@ -233,6 +249,7 @@ namespace TriviaAppClean.ViewModels
                     this.isAddingEnabled = false;
                     this.ShowErrorComment = true;
                 }
+                // Clear the question and answer fields
                 this.Question = "";
                 this.RightAnswer = "";
                 this.WrongAnswer1 = "";

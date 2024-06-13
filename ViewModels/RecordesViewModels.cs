@@ -26,8 +26,10 @@ namespace TriviaAppClean.ViewModels
             }
         }
 
+        // List of all users fetched from the server
         private List<User> allUsers;
 
+        // Text for searching users
         private string searchText;
         public string SearchText
         {
@@ -38,19 +40,20 @@ namespace TriviaAppClean.ViewModels
             set
             {
                 this.searchText = value;
-                OnSearchTextChanged();
+                OnSearchTextChanged();// Trigger search when text changes
                 OnPropertyChanged();
             }
         }
-        
-        
 
+
+        // Method to handle changes in search text and filter the users list
         private void OnSearchTextChanged()
         {
             ObservableCollection<User> temp = new ObservableCollection<User>();
-            ReadUsers();
+            ReadUsers();// Refresh the users list
             if (!String.IsNullOrEmpty(SearchText))
             {
+                // Filter users based on search text
                 foreach (User us in this.allUsers)
                 {
                     if (us.Name.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) == -1)
@@ -59,6 +62,7 @@ namespace TriviaAppClean.ViewModels
                     }
                 }
 
+                // Remove filtered users from the observable collection
                 foreach (User us in temp)
                 {
                     if (this.Users.Contains(us))
@@ -68,12 +72,15 @@ namespace TriviaAppClean.ViewModels
                 }
             }
         }
+
+        // Constructor to initialize the ViewModel with service proxy
         public RecordesViewModels(TriviaWebAPIProxy service)
         {
             triviaService = service;
-            ReadUsersFromServer();
+            ReadUsersFromServer();// Fetch users from the server
         }
 
+        // Private field to track if a server call is in progress
         private bool inServerCall;
         public bool InServerCall
         {
@@ -88,6 +95,7 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged("InServerCall");
             }
         }
+        // Public property to get the inverse of inServerCall
         public bool NotInServerCall
         {
             get
@@ -95,16 +103,22 @@ namespace TriviaAppClean.ViewModels
                 return !this.InServerCall;
             }
         }
+
+        // Async method to read users from the server and update the observable collection
         private async void ReadUsersFromServer()
         {
-            InServerCall = true;
+            InServerCall = true; // Indicate that a server call is in progress
             List<User> list = await triviaService.GetAllUsers();
+            // Order users by score in descending order
             list = list.OrderByDescending(u => u.Score).ToList();
+            // Store all users and update the observable collection
             this.allUsers = list;
             this.Users = new ObservableCollection<User>(list);
+            // Indicate that the server call has completed
             InServerCall = false;
         }
 
+        // Method to refresh the users list from the allUsers list
         private void ReadUsers()
         {
 
