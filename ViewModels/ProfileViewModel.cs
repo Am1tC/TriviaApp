@@ -50,7 +50,8 @@ namespace TriviaAppClean.ViewModels
         }
 
         #region Name
-
+        //since name is a more complex field, which requres more properties
+        //it has a region dedicated to declaring its properties
         public string Name
         {
             get => name;
