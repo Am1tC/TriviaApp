@@ -16,6 +16,8 @@ namespace TriviaAppClean.ViewModels
     {
         #region FormValidation
         #region Name
+
+
         private bool showNameError;
 
         public bool ShowNameError
