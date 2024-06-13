@@ -16,6 +16,8 @@ namespace TriviaAppClean.ViewModels
             private ProfileView profileView;
             private TriviaWebAPIProxy service;
             private User u;
+
+        // Private field to store the current user
         public User CurrentUser
         {
             get => u;
@@ -25,25 +27,32 @@ namespace TriviaAppClean.ViewModels
                 OnPropertyChanged("CurrentUser");
             }
         }
+        // Constructor to initialize the ViewModel with service proxy and profile view
         public GameViewModel(TriviaWebAPIProxy service, ProfileView profileView)
-            {
-                this.u = ((App)Application.Current).LoggedInUser;
-                this.service = service;
-                this.CorrectCommand = new Command(this.IfCorrect);
-                this.WrongCommand = new Command(this.IfWrong);
-                this.NextCommand = new Command(this.IfNextAsync);
-                this.QuitCommand = new Command(this.IfQuit);
-                InitQues();
-                CorrectColor = Color.FromRgba(0.31764707, 0.16862746, 0.83137256, 1);
-                W1Color = Color.FromRgba(0.31764707, 0.16862746, 0.83137256, 1);
-                W2Color = Color.FromRgba(0.31764707, 0.16862746, 0.83137256, 1);
-                W3Color = Color.FromRgba(0.31764707, 0.16862746, 0.83137256, 1);
-                Enabled = true;
-                Visible = false;
-                this.profileView = profileView;
-                //this.SaveQuestionCommand = new Command(this.SaveQuestion);
-            }
-            private async void InitQues()
+        {
+            this.u = ((App)Application.Current).LoggedInUser;// Get the logged-in user
+            this.service = service;
+
+            // Initialize commands
+            this.CorrectCommand = new Command(this.IfCorrect);
+            this.WrongCommand = new Command(this.IfWrong);
+            this.NextCommand = new Command(this.IfNextAsync);
+            this.QuitCommand = new Command(this.IfQuit);
+            // Initialize question
+            InitQues();
+
+            // Initialize colors and visibility
+            CorrectColor = Color.FromRgba(0.31764707, 0.16862746, 0.83137256, 1);
+            W1Color = Color.FromRgba(0.31764707, 0.16862746, 0.83137256, 1);
+            W2Color = Color.FromRgba(0.31764707, 0.16862746, 0.83137256, 1);
+            W3Color = Color.FromRgba(0.31764707, 0.16862746, 0.83137256, 1);
+            Enabled = true;
+            Visible = false;
+            this.profileView = profileView;
+
+        }
+        // Async method to initialize a question from the service
+        private async void InitQues()
             {
                 AmericanQuestion amq = await service.GetRandomQuestion();
                 QuestionContent = amq.QText;
@@ -131,6 +140,7 @@ namespace TriviaAppClean.ViewModels
                 }
             }
             #endregion
+            // Private field for the dialog message
             private string dialog;
             public string Dialog
             {
@@ -191,6 +201,8 @@ namespace TriviaAppClean.ViewModels
                     OnPropertyChanged("W3Color");
                 }
             }
+            
+            // Private field for enabling/disabling controls
             private bool enabled;
             public bool Enabled
             {
@@ -201,6 +213,8 @@ namespace TriviaAppClean.ViewModels
                     OnPropertyChanged("Enabled");
                 }
             }
+
+            // Private field for visibility of the dialog
             private bool visible;
             public bool Visible
             {
@@ -213,20 +227,23 @@ namespace TriviaAppClean.ViewModels
             }
             public Command SaveQuestionCommand { protected set; get; }
             public Command CorrectCommand { protected set; get; }
+
+            // Async method to handle correct answer
             public async void IfCorrect()
             {
-                CurrentUser.Score += 100;
-                await service.UpdateUser(CurrentUser); 
+                CurrentUser.Score += 100;// Increase user's score
+                await service.UpdateUser(CurrentUser); // Update user on the server
                 Dialog = "Correct Answer!";
                 DialogColor = Colors.Green;
                 CorrectColor = Colors.Green;
                 W1Color = Color.FromRgba(0.31764707, 0.16862746, 0.83137256, 1);
                 W2Color = Color.FromRgba(0.31764707, 0.16862746, 0.83137256, 1);
                 W2Color = Color.FromRgba(0.31764707, 0.16862746, 0.83137256, 1);
-                Enabled = false;
-                Visible = true;
+                Enabled = false; // Disable further interactions
+                Visible = true;// Show dialog
             }
             public Command WrongCommand { protected set; get; }
+            // Method to handle wrong answer
             public void IfWrong()
             {
                 //User u = ((App)Application.Current).LoggedInUser;
@@ -236,13 +253,14 @@ namespace TriviaAppClean.ViewModels
                 W1Color = Color.FromRgba(0.31764707, 0.16862746, 0.83137256, 1);
                 W2Color = Color.FromRgba(0.31764707, 0.16862746, 0.83137256, 1);
                 W2Color = Color.FromRgba(0.31764707, 0.16862746, 0.83137256, 1);
-                Enabled = false;
-                Visible = true;
+                Enabled = false; // Disable further interactions
+                Visible = true;// Show dialog
             }
             public Command NextCommand { protected set; get; }
+            // Async method to handle next question
             public async void IfNextAsync()
             {
-                Visible = false;
+                Visible = false;// Hide dialog
                 Dialog = "";
                 AmericanQuestion amq = await service.GetRandomQuestion();
                 QuestionContent = amq.QText;
@@ -251,15 +269,16 @@ namespace TriviaAppClean.ViewModels
                 WrongAnswer2 = amq.Bad2;
                 WrongAnswer3 = amq.Bad3;
                 CorrectColor = Color.FromRgba(0.31764707, 0.16862746, 0.83137256, 1);
-                Enabled = true;
-            }
+                Enabled = true; // Enable interactions
+        }
 
             public Command QuitCommand { protected set; get; }
+            // Async method to handle quitting the game
             public async void IfQuit()
             {
-                await Application.Current.MainPage.Navigation.PushAsync(profileView);
-                
-            }
+                await Application.Current.MainPage.Navigation.PushAsync(profileView); // Navigate to profile view
+
+        }
         }
 }
 

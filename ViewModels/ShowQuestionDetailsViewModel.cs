@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TriviaAppClean.ViewModels
+namespace TriviaAppClean.ViewModels //עמוד שלא צריך לעבוד עליו
 {
-    public class ShowQuestionDetailsViewModel: ViewModelBase //עמוד שלא צריך לעבוד עליו
+    public class ShowQuestionDetailsViewModel: ViewModelBase 
     {
         private string correctAns;
         private string wrongAns1;
